@@ -61,3 +61,10 @@
   for = "/reels/*"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+# Outils internes (génération des Reels) : jamais servis.
+[[redirects]]
+  from = "/tools/*"
+  to = "/404"
+  status = 404
+  force = true

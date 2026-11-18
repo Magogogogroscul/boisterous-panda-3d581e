@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Outfit;font-weight:500;src:url(node_modules/@fontsource/outfit/files/outfit-latin-500-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:700;src:url(node_modules/@fontsource/outfit/files/outfit-latin-700-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:800;src:url(node_modules/@fontsource/outfit/files/outfit-latin-800-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:900;src:url(node_modules/@fontsource/outfit/files/outfit-latin-900-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#04160f}
+body{font-family:Outfit,sans-serif;color:#fff;font-weight:800}
+/* ---------- tapis de jeu ---------- */
+#stage{position:absolute;inset:0;background:
+  radial-gradient(1150px 1000px at 50% 40%,#1c8a5a 0%,#0f6a43 34%,#0a4a30 62%,#052417 100%)}
+#grain{position:absolute;inset:0;opacity:.20;mix-blend-mode:overlay}
+#vig{position:absolute;inset:0;background:radial-gradient(1300px 1500px at 50% 42%,transparent 55%,rgba(0,0,0,.55) 100%)}
+#arc{position:absolute;left:-260px;top:520px;width:1600px;height:1600px;border-radius:50%;border:5px solid rgba(240,194,70,.38);box-shadow:inset 0 0 0 14px rgba(240,194,70,.05)}
+#arctxt{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.abs{position:absolute;left:0;width:1080px;text-align:center}
+.gold{color:#f7cf5a}.green{color:#3ee07f}
+/* ---------- marque ---------- */
+#brand{top:268px}
+#brand span{display:inline-block;padding:12px 34px 15px;border-radius:50px;background:rgba(3,22,14,.6);border:3px solid rgba(240,194,70,.75);
+  font-size:34px;letter-spacing:6px;font-weight:800;color:#f7cf5a}
+/* ---------- cartes ---------- */
+.card{position:absolute;border-radius:30px;filter:drop-shadow(0 26px 30px rgba(0,0,0,.5))}
+.face{position:absolute;inset:0;border-radius:30px;background:linear-gradient(160deg,#ffffff 0%,#f3f1ea 100%);color:#12151c;border:2px solid rgba(0,0,0,.08)}
+.face.red{color:#d81f2a}
+.face .tl,.face .br{position:absolute;text-align:center;line-height:.95;font-weight:900;letter-spacing:-3px}
+.face .tl{left:20px;top:14px}
+.face .br{right:20px;bottom:14px;transform:rotate(180deg)}
+.face .tl svg,.face .br svg{display:block;margin:6px auto 0}
+.face .mid{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center}
+.back{position:absolute;inset:0;border-radius:30px;background:#8f1420;border:10px solid #fbf7ee}
+.back:after{content:"";position:absolute;inset:14px;border-radius:14px;border:3px solid rgba(247,207,90,.8);
+  background:repeating-linear-gradient(45deg,rgba(247,207,90,.28) 0 6px,transparent 6px 20px),repeating-linear-gradient(-45deg,rgba(247,207,90,.28) 0 6px,transparent 6px 20px)}
+.tag{position:absolute;height:62px;line-height:56px;padding:0 26px;border-radius:40px;background:rgba(3,22,14,.72);border:3px solid rgba(255,255,255,.22);
+  font-size:32px;font-weight:800;letter-spacing:4px;color:#d6e6dd;white-space:nowrap}
+.tag b{color:#f7cf5a;font-weight:900;letter-spacing:1px;margin-left:10px;font-size:36px}
+/* ---------- textes ---------- */
+#hook1{top:1150px;font-size:146px;font-weight:900;line-height:1;letter-spacing:-3px;text-shadow:0 8px 0 rgba(0,0,0,.35),0 0 40px rgba(0,0,0,.35)}
+#hook2{top:1322px}
+#hook2 span{display:inline-block;background:#f7cf5a;color:#10140f;font-size:96px;font-weight:900;padding:6px 44px 16px;border-radius:22px;transform:rotate(-2.5deg);box-shadow:0 12px 0 rgba(0,0,0,.3)}
+#ring{position:absolute;left:430px;top:1162px;width:220px;height:220px}
+#num{position:absolute;left:430px;top:1162px;width:220px;height:220px;line-height:212px;text-align:center;font-size:156px;font-weight:900;text-shadow:0 8px 0 rgba(0,0,0,.35)}
+#choices{position:absolute;left:0;width:1080px;top:1398px;display:flex;justify-content:center;gap:16px}
+.ch{height:110px;line-height:100px;padding:0 30px;border-radius:28px;border:4px solid rgba(255,255,255,.28);background:rgba(3,22,14,.72);font-size:46px;font-weight:800;white-space:nowrap}
+#ans{position:absolute;left:0;width:1080px;top:1168px;text-align:center}
+#ans span{display:inline-block;background:linear-gradient(180deg,#46e889 0%,#1fb85c 100%);color:#04200f;border-radius:34px;padding:10px 64px 22px;font-size:150px;font-weight:900;line-height:1.05;letter-spacing:1px;
+  border:6px solid #eafff2;box-shadow:0 16px 0 rgba(0,0,0,.32),0 0 90px rgba(62,224,127,.55);transform:rotate(-3deg)}
+.ex{top:1318px;padding:0 60px}
+.ex div{display:inline-block;background:rgba(3,22,14,.78);border-radius:30px;padding:22px 40px 28px;font-size:62px;line-height:1.22;font-weight:800;border:3px solid rgba(255,255,255,.14)}
+.hl{background:#f7cf5a;color:#10140f;border-radius:12px;padding:0 14px 4px}
+.hg{background:#3ee07f;color:#04200f;border-radius:12px;padding:0 14px 4px}
+/* ---------- ecran final ---------- */
+#end{position:absolute;inset:0}
+#e1{top:470px;font-size:120px;font-weight:900;letter-spacing:-2px;text-shadow:0 8px 0 rgba(0,0,0,.35)}
+#e2{top:630px}
+#e2 span{display:inline-block;background:#f7cf5a;color:#10140f;font-size:250px;line-height:1;font-weight:900;letter-spacing:4px;padding:0 60px 26px;border-radius:40px;transform:rotate(-3deg);box-shadow:0 20px 0 rgba(0,0,0,.32)}
+#cm{position:absolute;left:110px;top:960px;width:860px;height:150px;border-radius:75px;background:#fff;box-shadow:0 22px 40px rgba(0,0,0,.4)}
+#cm .av{position:absolute;left:22px;top:22px;width:106px;height:106px;border-radius:50%;background:linear-gradient(135deg,#f7cf5a,#e0762b 55%,#c2256f)}
+#cm .av:after{content:"";position:absolute;inset:8px;border-radius:50%;background:#dfe5ea}
+#cm .tx{position:absolute;left:160px;top:0;line-height:146px;font-size:70px;font-weight:800;color:#10140f;letter-spacing:3px}
+#cm .cur{display:inline-block;width:6px;height:74px;background:#2f80ed;vertical-align:-10px;margin-left:8px}
+#cm .send{position:absolute;right:34px;top:0;line-height:146px;font-size:50px;font-weight:800;color:#2f80ed}
+#e3{top:1150px;font-size:74px;font-weight:900;line-height:1.16;padding:0 70px;text-shadow:0 6px 0 rgba(0,0,0,.35)}
+#e4{top:1334px}
+#e4 span{display:inline-block;background:linear-gradient(180deg,#46e889 0%,#1fb85c 100%);color:#04200f;font-size:84px;font-weight:900;padding:6px 56px 16px;border-radius:26px;border:5px solid #eafff2;box-shadow:0 12px 0 rgba(0,0,0,.3)}
+#e5{top:1474px;font-size:30px;font-weight:500;color:rgba(255,255,255,.62);letter-spacing:1px}
+</style></head><body><div id="stage">
+<svg id="grain" width="1080" height="1920"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .9 0"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg>
+<div id="arc"></div>
+<div id="vig"></div>
+<div id="main">
+ <div id="brand" class="abs"><span>♠ TUTO BLACKJACK</span></div>
+ <div id="cards"></div>
+ <div id="dtag" class="tag">CROUPIER<b></b></div>
+ <div id="ptag" class="tag">TOI<b></b></div>
+ <div id="hook1" class="abs"></div><div id="hook2" class="abs"><span>Tu fais quoi ?</span></div>
+ <svg id="ring" viewBox="0 0 240 240"><circle cx="120" cy="120" r="106" fill="rgba(3,22,14,.72)" stroke="rgba(255,255,255,.2)" stroke-width="14"/>
+  <circle id="arcp" cx="120" cy="120" r="106" fill="none" stroke="#f7cf5a" stroke-width="14" stroke-linecap="round" transform="rotate(-90 120 120)" stroke-dasharray="666"/></svg>
+ <div id="num"></div>
+ <div id="choices"></div>
+ <div id="ans"><span></span></div>
+ <div id="ex1" class="abs ex"><div></div></div><div id="ex2" class="abs ex"><div></div></div>
+</div>
+<div id="end">
+ <div id="e1" class="abs">Commente</div>
+ <div id="e2" class="abs"><span>TUTO</span></div>
+ <div id="cm"><div class="av"></div><div class="tx"><span id="typed"></span><span class="cur" id="cur"></span></div><div class="send">Publier</div></div>
+ <div id="e3" class="abs">et je t’envoie ton<br>tableau de blackjack</div>
+ <div id="e4" class="abs"><span>GRATUITEMENT</span></div>
+ <div id="e5" class="abs">18+ · Jouer comporte des risques</div>
+</div>
+</div>
+<script>
+const SUIT={
+ s:'<path d="M50 6C50 6 10 40 10 62c0 13 10 22 21 22 7 0 13-3 16-8-1 8-4 14-9 18h24c-5-4-8-10-9-18 3 5 9 8 16 8 11 0 21-9 21-22C90 40 50 6 50 6z"/>',
+ h:'<path d="M50 92C50 92 8 62 8 34 8 20 18 10 30 10c9 0 16 5 20 13 4-8 11-13 20-13 12 0 22 10 22 24 0 28-42 58-42 58z"/>',
+ d:'<path d="M50 4L88 50 50 96 12 50z"/>',
+ c:'<path d="M50 6a19 19 0 0 0-17 28 19 19 0 1 0 13 30c-1 12-4 20-9 26h26c-5-6-8-14-9-26a19 19 0 1 0 13-30A19 19 0 0 0 50 6z"/>'};
+// La fiche du Reel (S) et ses temps (T) arrivent dans l'URL, voir make_reel.py
+const q=new URLSearchParams(location.search), R=JSON.parse(q.get('S'));
+let T=JSON.parse(q.get('T')||'null')||{h2:1.1,cd:1.8,n1:1.9,n2:2.6,n3:3.4,ans:3.96,ex1:4.7,ex2:7.8,end:9.6,e3:11.2,total:14.3};
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>{x=clamp(x);return 1-Math.pow(1-x,3)};
+const back=x=>{x=clamp(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const seg=(t,a,d)=>clamp((t-a)/d);
+function mkCard(id,w,h,rank,suit){
+  const red=suit=='h'||suit=='d',fs=Math.round(w*0.30),ss=Math.round(w*0.17),big=Math.round(w*0.50);
+  const sv=s=>`<svg width="${s}" height="${s}" viewBox="0 0 100 100" fill="currentColor">${SUIT[suit]}</svg>`;
+  const el=document.createElement('div');el.className='card';el.id=id;el.style.width=w+'px';el.style.height=h+'px';
+  el.innerHTML=(rank?`<div class="face ${red?'red':''}"><div class="tl" style="font-size:${fs}px">${rank}${sv(ss)}</div><div class="mid">${sv(big)}</div></div>`:'')+'<div class="back"></div>';
+  $('cards').appendChild(el);return el;}
+const DW=214,DH=300,PW=280,PH=392,DY=372,PY=716;
+const d1=mkCard('d1',DW,DH,R.dealer[0],R.dealer[1]),d2=mkCard('d2',DW,DH,null);
+const p1=mkCard('p1',PW,PH,...R.player[0]),p2=mkCard('p2',PW,PH,...R.player[1]),p3=mkCard('p3',PW,PH,null);
+$('hook1').innerHTML=R.hook;if(R.answer.length>6)$('ans').firstChild.style.fontSize='118px';$('ans').firstChild.textContent=R.answer;
+$('dtag').querySelector('b').textContent=R.dval;$('ptag').querySelector('b').textContent=R.pval;
+$('ex1').firstChild.innerHTML=R.ex1;$('ex2').firstChild.innerHTML=R.ex2;
+R.choices.forEach(c=>{const e=document.createElement('div');e.className='ch';e.textContent=c;$('choices').appendChild(e)});
+function place(el,x,y,flip,op=1,rot=0,sc=1){ // flip: 0 = dos visible, 1 = face visible
+  const a=flip*Math.PI,sx=Math.max(0.02,Math.abs(Math.cos(a)));
+  el.style.left=x+'px';el.style.top=y+'px';el.style.opacity=op;el.style.transform=`rotate(${rot}deg) scale(${sx*sc},${sc})`;
+  const f=el.querySelector('.face'),b=el.querySelector('.back');
+  if(f){f.style.display=flip>=0.5?'block':'none';b.style.display=flip>=0.5?'none':'block';}
+}
+function fade(el,op,dy=0,sc=1){el.style.opacity=op;el.style.transform=`translateY(${dy}px) scale(${sc})`;el.style.visibility=op<=0.001?'hidden':'visible';}
+function render(t){
+  const endIn=ease(seg(t,T.end,0.3));
+  $('main').style.opacity=1-ease(seg(t,T.end-0.22,0.3));
+  // cartes : elles glissent depuis le haut, legerement inclinees
+  const dealIn=i=>ease(seg(t,i*0.07,0.3));
+  const gapD=-34,dx=(1080-(2*DW+gapD))/2;
+  place(d2,dx+DW+gapD,DY-(1-dealIn(1))*220,0,dealIn(1),5);
+  place(d1,dx,DY-(1-dealIn(0))*220,ease(seg(t,0.12,0.3)),dealIn(0),-5);
+  const sp=R.move=='P'?ease(seg(t,T.ans+0.12,0.55)):0;   // les 8 s'ecartent
+  const hit=(R.move=='T'||R.move=='D')?ease(seg(t,T.ans+0.12,0.5)):0;      // une 3e carte arrive, face cachee
+  const gapP=-40+sp*190-hit*30, n=2+hit, tot=n*PW+(n-1)*gapP, px=(1080-tot)/2;
+  place(p1,px,PY+(1-dealIn(2))*220,ease(seg(t,0.2,0.3)),dealIn(2),-6*(1-sp));
+  place(p2,px+PW+gapP,PY+(1-dealIn(3))*220,ease(seg(t,0.28,0.3)),dealIn(3),6*(1-sp)*(1-hit*0.6));
+  place(p3,px+2*(PW+gapP)+(1-hit)*420,PY-(1-hit)*120,0,hit,9);
+  // etiquettes
+  fade($('brand'),ease(seg(t,0,0.35)),(1-ease(seg(t,0,0.35)))*-20);
+  const dOp=ease(seg(t,0.3,0.3)),pOp=ease(seg(t,0.4,0.3))*(1-ease(seg(t,T.ans-0.05,0.2)));
+  $('dtag').style.right=(1080-dx+30)+'px';$('dtag').style.top=(DY+DH/2-31)+'px';$('dtag').style.opacity=dOp;
+  $('ptag').style.right=(1080-(1080-(2*PW-40))/2+34)+'px';$('ptag').style.top=(PY+PH/2-31)+'px';$('ptag').style.opacity=pOp;
+  // accroche
+  const hOut=1-ease(seg(t,T.cd-0.16,0.16));
+  fade($('hook1'),ease(seg(t,0,0.2))*hOut,(1-ease(seg(t,0,0.2)))*50,0.86+0.14*back(seg(t,0,0.32)));
+  fade($('hook2'),ease(seg(t,T.h2-0.05,0.18))*hOut,(1-ease(seg(t,T.h2-0.05,0.18)))*40,0.8+0.2*back(seg(t,T.h2-0.05,0.3)));
+  // compte a rebours
+  const cdOp=ease(seg(t,T.cd,0.15))*(1-ease(seg(t,T.ans-0.08,0.1)));
+  const NS=[T.n1,T.n2,T.n3],k=t<T.n2?0:(t<T.n3?1:2),fr=Math.max(0,t-NS[k]);
+  $('num').textContent=3-k;fade($('num'),cdOp,0,1+0.4*(1-ease(fr/0.28)));
+  $('ring').style.opacity=cdOp;$('arcp').setAttribute('stroke-dashoffset',666*clamp((t-T.cd)/(T.ans-T.cd)));
+  [...$('choices').children].forEach((e,i)=>fade(e,ease(seg(t,T.cd+0.05+i*0.07,0.25))*(1-ease(seg(t,T.ans-0.05,0.18))),(1-ease(seg(t,T.cd+0.05+i*0.07,0.25)))*30));
+  // reponse
+  const m=ease(seg(t,T.ex1-0.28,0.28));                  // la pastille remonte et retrecit pour l'explication
+  const aIn=seg(t,T.ans,0.26);
+  $('ans').style.opacity=ease(aIn*1.8);$('ans').style.visibility=aIn>0?'visible':'hidden';
+  $('ans').style.transform=`translateY(${-78*m}px) scale(${(0.5+0.5*back(aIn))*(1-0.52*m)})`;
+  // explication
+  const x1=ease(seg(t,T.ex1-0.05,0.25))*(1-ease(seg(t,T.ex2-0.25,0.2)));
+  fade($('ex1'),x1,(1-ease(seg(t,T.ex1-0.05,0.25)))*30);
+  fade($('ex2'),ease(seg(t,T.ex2-0.05,0.25)),(1-ease(seg(t,T.ex2-0.05,0.25)))*30);
+  // ecran final
+  $('end').style.visibility=endIn>0?'visible':'hidden';
+  const st=(id,a,sc)=>{const v=ease(seg(t,a,0.3));fade($(id),v,(1-v)*40,sc?0.6+0.4*back(seg(t,a,0.36)):1)};
+  st('e1',T.end);st('e2',T.end+0.28,1);
+  const cIn=ease(seg(t,T.end+0.7,0.3));$('cm').style.opacity=cIn;$('cm').style.transform=`translateY(${(1-cIn)*40}px)`;
+  const nch=Math.floor(clamp((t-(T.end+0.95))/0.5)*4+0.001);$('typed').textContent='TUTO'.slice(0,nch);
+  $('cur').style.opacity=(Math.floor(t*2.5)%2)?1:0.15;
+  st('e3',T.e3-0.05);st('e4',T.e3+0.75,1);st('e5',T.e3+0.2);
+}
+window.render=render;render(+(q.get('t')||0));
+</script></body></html>
