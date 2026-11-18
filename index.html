@@ -3,9 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Master Blackjack — Apprends la Stratégie de Base & Joue en Ligne</title>
+<title>Tableau Blackjack : la Stratégie de Base Gratuite | Tuto Blackjack</title>
 <link rel="canonical" href="https://tutoblackjack.com/">
-<meta name="description" content="Maîtrise le blackjack avec notre tableau de stratégie de base complet. Apprends les règles, les astuces et joue comme un pro.">
+<meta name="description" content="Le tableau de stratégie de base du blackjack, gratuit : quand tirer, rester, doubler ou partager. Règles, mains dures, souples, paires et erreurs à éviter.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Tuto Blackjack">
+<meta property="og:title" content="Tableau Blackjack : la Stratégie de Base Gratuite">
+<meta property="og:description" content="Quand tirer, rester, doubler ou partager : le tableau complet de la stratégie de base du blackjack.">
+<meta property="og:url" content="https://tutoblackjack.com/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b1120">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "Tuto Blackjack", "url": "https://tutoblackjack.com/", "inLanguage": "fr"}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Est-ce que la stratégie de base garantit de gagner ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, aucune stratégie ne garantit de gagner à chaque main. Mais la stratégie de base réduit l'avantage de la maison à environ 0.5%, ce qui te donne les meilleures chances possibles sur le long terme."}}, {"@type": "Question", "name": "Puis-je utiliser le tableau en jouant en ligne ?", "acceptedAnswer": {"@type": "Answer", "text": "Absolument ! En ligne, personne ne te voit. Tu peux garder le tableau ouvert à côté et le consulter à chaque main. C'est d'ailleurs le meilleur moyen de l'apprendre par cœur."}}, {"@type": "Question", "name": "C'est quoi la différence entre main dure et main souple ?", "acceptedAnswer": {"@type": "Answer", "text": "Une main souple contient un As compté comme 11 (ex : As+6 = 17 souple). Elle est « flexible » car l'As peut repasser à 1. Une main dure n'a pas d'As flexible (ex : 10+7 = 17 dur)."}}, {"@type": "Question", "name": "Combien de temps faut-il pour mémoriser le tableau ?", "acceptedAnswer": {"@type": "Answer", "text": "En pratiquant 15-20 minutes par jour, tu peux le maîtriser en 1 à 2 semaines. Commence par les mains dures, puis les paires, puis les mains souples."}}, {"@type": "Question", "name": "Le blackjack en ligne est-il truqué ?", "acceptedAnswer": {"@type": "Answer", "text": "Les plateformes régulées utilisent des générateurs de nombres aléatoires certifiés. Tant que tu joues sur un site licencié, les résultats sont équitables et vérifiés par des auditeurs indépendants."}}]}]</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -397,6 +408,33 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 }
 .cta-btn { animation: pulse-glow 2.5s ease-in-out infinite; }
 .cta-btn:hover { animation: none; }
+
+/* ===== BONUS + CTA VERT + TABLEAU VERROUILLÉ ===== */
+.cta-btn { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: #fff; box-shadow: 0 4px 25px rgba(34,197,94,0.4); text-transform: uppercase; }
+.cta-btn:hover { box-shadow: 0 6px 35px rgba(34,197,94,0.55); }
+@keyframes pulse-glow { 0%,100% { box-shadow: 0 4px 25px rgba(34,197,94,0.35); } 50% { box-shadow: 0 4px 40px rgba(34,197,94,0.65); } }
+.bonus-card { max-width: 560px; margin: 0 auto 34px; padding: 26px 22px; border-radius: 20px; background: var(--bg-card); border: 1px solid rgba(34,197,94,0.45); box-shadow: 0 0 60px rgba(34,197,94,0.12); text-align: center; position: relative; z-index: 2; }
+.bonus-tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-green); border: 1px solid rgba(34,197,94,.5); border-radius: 50px; padding: 4px 12px; margin-bottom: 12px; }
+.bonus-title { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 6vw, 2.4rem); line-height: 1.1; color: #fff; }
+.bonus-title span { color: var(--accent-green); }
+.bonus-sub { margin: 10px 0 4px; font-size: 1.1rem; color: var(--text-primary); font-weight: 600; }
+.bonus-detail { color: var(--accent-gold); font-weight: 700; margin-bottom: 18px; }
+.bonus-legal { margin-top: 12px; font-size: .72rem; color: var(--text-muted); }
+.bonus-card .cta-btn { display: block; padding: 16px 18px; font-size: 1rem; white-space: nowrap; }
+.hero h1 { font-size: clamp(1.8rem, 6.5vw, 3.2rem); }
+.gate { position: relative; }
+.gate.locked .table-wrapper { filter: blur(9px); pointer-events: none; user-select: none; max-height: 620px; overflow: hidden; }
+.gate-box { display: none; }
+.gate.locked .gate-box { display: block; position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: min(92%, 440px); z-index: 5; background: var(--bg-card); border: 1px solid rgba(240,194,70,.45); border-radius: 18px; padding: 26px 22px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+.gate-box h3 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; margin-bottom: 6px; }
+.gate-box p { color: var(--text-secondary); font-size: .92rem; margin-bottom: 14px; }
+.gate-box input[type=email] { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); background: var(--bg-dark); color: #fff; font-size: 1rem; margin-bottom: 10px; }
+.gate-box label.consent { display: flex; gap: 8px; text-align: left; font-size: .75rem; color: var(--text-muted); margin-bottom: 14px; align-items: flex-start; }
+.gate-box button { width: 100%; border: 0; cursor: pointer; padding: 14px; border-radius: 50px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; background: var(--cta-gradient); color: #1a1a1a; }
+.gate-box .hp { position: absolute; left: -9999px; }
+.sticky-cta { display: block; }
+.sticky-cta .live-text { margin-top: 6px; font-size: .72rem; color: var(--text-muted); }
+body { padding-bottom: 96px; }
 </style>
 </head>
 <body>
@@ -420,54 +458,47 @@ footer a { color: var(--accent-gold); text-decoration: none; }
     <div class="floating-card">🂱</div>
   </div>
   <div class="hero-content">
-    <h1>MASTER <span>BLACKJACK</span></h1>
-    <p class="hero-subtitle">Réduis l'avantage de la maison à <strong style="color:#fff;">0.5%</strong> grâce à la stratégie de base. Mémorise le tableau, applique-le, deviens redoutable.</p>
-    <div class="hero-stat">🔥 <strong>14 827</strong> joueurs utilisent déjà cette stratégie</div>
+    <div class="bonus-card">
+      <div class="bonus-tag">OFFRE DE BIENVENUE</div>
+      <div class="bonus-title">DOUBLE TON <span>PREMIER DÉPÔT</span></div>
+      <p class="bonus-sub">Dépose 100 €, joue avec 200 €</p>
+      <p class="bonus-detail">Bonus 100 % + 200 free spins</p>
+      <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-hero" data-cta="hero">Récupère ton bonus ici →</a>
+      <p class="bonus-legal">18+ · Offre soumise aux conditions du casino · Jouer comporte des risques</p>
+    </div>
+    <h1>TABLEAU <span>BLACKJACK</span> : LA STRATÉGIE DE BASE</h1>
+    <p class="hero-subtitle">Réduis l'avantage de la maison à environ <strong style="color:#fff;">0,5 %</strong> grâce à la stratégie de base. Débloque le tableau, applique-le à chaque main.</p>
     <div class="hero-cta-row">
-      <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-hero">JOUER EN LIGNE →</a>
-      <a href="#tableau" class="cta-btn-secondary">Voir le tableau ↓</a>
+      <a href="#tableau" class="cta-btn-secondary">Débloquer le tableau ↓</a>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF BAR -->
+<!-- CHIFFRES CLÉS -->
 <div class="social-proof-bar">
-  <div class="proof-stat"><span class="num" data-target="14827">0</span><span class="label">Joueurs actifs</span></div>
   <div class="proof-stat"><span class="num" data-target="0.5" data-suffix="%" data-decimal="true">0%</span><span class="label">Avantage maison</span></div>
-  <div class="proof-stat"><span class="num" data-target="5" data-suffix=" min">0 min</span><span class="label">Pour apprendre</span></div>
-  <div class="proof-stat"><span class="num" data-target="4.9" data-suffix="/5" data-decimal="true">0/5</span><span class="label">Note moyenne</span></div>
+  <div class="proof-stat"><span class="num" data-target="3" data-suffix=" tableaux">0</span><span class="label">Dures, souples, paires</span></div>
+  <div class="proof-stat"><span class="num" data-target="5" data-suffix=" min">0 min</span><span class="label">Pour comprendre</span></div>
+  <div class="proof-stat"><span class="num" data-target="100" data-suffix="%">0%</span><span class="label">Gratuit</span></div>
 </div>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="container">
-    <h2 class="section-title">Ils ont <span>amélioré</span> leur jeu</h2>
-    <p class="section-sub">Des joueurs comme toi qui ont appris la stratégie de base et ne jouent plus au hasard.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Avant je jouais au feeling et je perdais tout le temps. Depuis que j'utilise le tableau, mes sessions sont beaucoup plus longues et rentables.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">T</div><div><div class="testimonial-name">Thomas R.</div><div class="testimonial-meta">Joueur depuis 6 mois</div></div></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Le tuto m'a tout appris en une soirée. J'ai le tableau en bookmark et je le consulte à chaque session. Ça change tout.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-meta">Joueuse depuis 3 mois</div></div></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Je pensais que le blackjack c'était 100% chance. La stratégie de base prouve le contraire. Mes résultats parlent d'eux-mêmes.</p>
-        <div class="testimonial-author"><div class="testimonial-avatar">K</div><div><div class="testimonial-name">Kevin L.</div><div class="testimonial-meta">Joueur depuis 1 an</div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- STRATEGY TABLE -->
 <section class="table-section" id="tableau">
   <div class="container">
     <h2 class="section-title">Tableau de <span>Stratégie</span> de Base</h2>
     <p class="section-sub">Utilise ce tableau à chaque main. La colonne = carte visible du croupier. La ligne = ta main.</p>
+    <div class="gate locked" id="gate">
+      <div class="gate-box">
+        <h3>🔒 Débloque le tableau complet</h3>
+        <p>Entre ton email pour afficher le tableau de stratégie de base (mains dures, souples et paires).</p>
+        <form name="tableau" method="POST" data-netlify="true" netlify-honeypot="site" id="gateForm">
+          <input type="hidden" name="form-name" value="tableau">
+          <p class="hp"><label>Ne pas remplir : <input name="site"></label></p>
+          <input type="email" name="email" placeholder="ton@email.com" required autocomplete="email" aria-label="Ton email">
+          <label class="consent"><input type="checkbox" name="consentement" value="oui" required> <span>J'accepte de recevoir le tableau et les conseils blackjack de Tuto Blackjack par email. Désinscription possible à tout moment.</span></label>
+          <button type="submit">Débloquer le tableau →</button>
+        </form>
+      </div>
     <div class="table-wrapper">
       <div class="table-block">
         <div class="table-block-title">Mains Dures</div>
@@ -540,13 +571,14 @@ footer a { color: var(--accent-gold); text-decoration: none; }
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <!-- CTA 1 -->
 <div class="cta-block">
   <h2>Tu connais maintenant la stratégie de base 🃏</h2>
   <p>Mets tes connaissances en pratique et joue directement en ligne.</p>
-  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-1">JOUER MAINTENANT →</a>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-1" data-cta="cta-link-1">Récupère ton bonus ici →</a>
 </div>
 <div class="cta-divider"></div>
 
@@ -619,7 +651,7 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 <div class="cta-block">
   <h2>Prêt à tester tes nouvelles compétences ? 🎯</h2>
   <p>Applique la stratégie de base en conditions réelles et prends l'avantage.</p>
-  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-2">COMMENCER À JOUER →</a>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-2" data-cta="cta-link-2">Récupère ton bonus ici →</a>
 </div>
 <div class="cta-divider"></div>
 
@@ -647,7 +679,7 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 <div class="cta-block">
   <h2>Tu maîtrises les bases, il ne reste plus qu'à jouer 🔥</h2>
   <p>Des milliers de joueurs utilisent déjà cette stratégie. À ton tour.</p>
-  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-3">JOUER EN LIGNE MAINTENANT →</a>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-3" data-cta="cta-link-3">Récupère ton bonus ici →</a>
 </div>
 <div class="cta-divider"></div>
 
@@ -668,19 +700,19 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 <div class="cta-block" style="padding-bottom: 60px;">
   <h2>Arrête de perdre, commence à jouer intelligemment ♠️</h2>
   <p>Rejoins les joueurs qui appliquent la stratégie et maximisent leurs sessions.</p>
-  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-4">ACCÉDER AUX TABLES →</a>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-4" data-cta="cta-link-4">Récupère ton bonus ici →</a>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <a href="#">Master Blackjack</a> — Joue responsablement. 18+</p>
+  <p>© 2026 <a href="/">Tuto Blackjack</a> — Joue responsablement. 18+</p>
   <p style="margin-top:8px;">Ce site a un but éducatif. Les jeux d'argent comportent des risques.</p>
 </footer>
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener" class="cta-btn" id="cta-link-sticky">JOUER MAINTENANT →</a>
-  <div class="live-text"><span class="live-dot"></span> <span id="live-count">237</span> joueurs en ligne en ce moment</div>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-sticky" data-cta="cta-link-sticky">Récupère ton bonus ici →</a>
+  <div class="live-text">Bonus 100 % + 200 free spins · 18+ · Conditions sur le site du casino</div>
 </div>
 
 <script>
@@ -744,18 +776,22 @@ const heroSection = document.querySelector('.hero');
 let stickyShown = false;
 window.addEventListener('scroll', () => {
   const heroBottom = heroSection.getBoundingClientRect().bottom;
-  if (heroBottom < -100 && !stickyShown) { stickyCta.classList.add('visible'); stickyShown = true; }
-  else if (heroBottom > 0 && stickyShown) { stickyCta.classList.remove('visible'); stickyShown = false; }
+  if (heroBottom < 200 && !stickyShown) { stickyCta.classList.add('visible'); stickyShown = true; }
+  else if (heroBottom > 260 && stickyShown) { stickyCta.classList.remove('visible'); stickyShown = false; }
 }, { passive: true });
 
-// Live counter fluctuation
-const liveCount = document.getElementById('live-count');
-let currentLive = 237;
-setInterval(() => {
-  currentLive += Math.floor(Math.random() * 7) - 3;
-  currentLive = Math.max(180, Math.min(350, currentLive));
-  liveCount.textContent = currentLive;
-}, 4000);
+// Tableau verrouillé
+const gate = document.getElementById('gate');
+const gateForm = document.getElementById('gateForm');
+function unlockGate() { gate.classList.remove('locked'); }
+try { if (localStorage.getItem('tbj_unlocked') === '1') unlockGate(); } catch (e) {}
+gateForm.addEventListener('submit', ev => {
+  ev.preventDefault();
+  const body = new URLSearchParams(new FormData(gateForm)).toString();
+  fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    .catch(() => {})
+    .finally(() => { try { localStorage.setItem('tbj_unlocked', '1'); } catch (e) {} unlockGate(); });
+});
 </script>
 </body>
 </html>
