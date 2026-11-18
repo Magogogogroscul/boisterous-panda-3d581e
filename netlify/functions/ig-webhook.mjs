@@ -33,11 +33,11 @@ function signatureOk(raw, header) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
-// « Seulement ce mot » : le commentaire est le mot-clé seul, ponctuation et emojis ignorés
-// (« TUTO », « tuto!! », « TUTO 🙌 » oui ; « c'est quoi le tuto ? » non).
+// Le mot-clé compte quelle que soit la façon de l'écrire : majuscules, accents, espaces, points, emojis,
+// seul ou au milieu d'une phrase (« TUTO », « tuto svp », « T.U.T.O », « Tutô 🙌 », « je veux le tuto »).
 function correspond(texte, motCle) {
-  const nu = String(texte).toLowerCase().normalize("NFKC").replace(/[^\p{L}\p{N}]+/gu, "");
-  return nu === motCle;
+  const nu = String(texte).toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "");
+  return nu.includes(motCle);
 }
 
 async function appel(url, token, corps) {
