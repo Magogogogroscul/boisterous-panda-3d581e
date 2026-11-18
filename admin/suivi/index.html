@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Suivi des comptes — Tuto Blackjack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  body { background: var(--bg-dark); color: var(--text-primary); font-family: 'DM Sans', sans-serif; }
+  .sv { max-width: 1080px; margin: 0 auto; padding: 28px 16px 70px; }
+  .sv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 22px; }
+  .sv h1 { font: 900 clamp(1.5rem, 5vw, 2.1rem)/1.15 'Outfit', sans-serif; }
+  .sv h1 span { color: var(--accent-gold); }
+  .sv .maj { color: var(--text-muted); font-size: .88rem; }
+  .sv h2 { font: 800 1.2rem 'Outfit', sans-serif; margin: 30px 0 12px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tile, .box { background: var(--bg-card); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 16px; min-width: 0; }
+  .tile .lbl { font-size: .8rem; font-weight: 600; color: var(--text-muted); }
+  .tile .val { font: 800 1.8rem/1.2 'Outfit', sans-serif; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .sub { font-size: .8rem; color: var(--text-muted); margin-top: 2px; }
+  .tile.gold .val { color: var(--accent-gold); }
+  .bar { height: 12px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; margin: 12px 0 8px; }
+  .bar i { display: block; height: 100%; background: var(--accent-gold); border-radius: 99px; }
+  .bar.alert i { background: var(--accent-red); }
+  .note { color: var(--text-secondary); font-size: .92rem; line-height: 1.5; }
+  .note b { color: var(--text-primary); }
+  .warn { color: #fecaca; }
+  .acc { margin-bottom: 14px; }
+  .acc-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; }
+  .acc-top a { font: 800 1.15rem 'Outfit', sans-serif; color: var(--text-primary); text-decoration: none; }
+  .acc-top a:hover { color: var(--accent-gold); }
+  .pill { font-size: .78rem; font-weight: 700; padding: 4px 10px; border-radius: 99px; background: rgba(255,255,255,.08); color: var(--text-secondary); white-space: nowrap; }
+  .pill.ok { background: rgba(34,197,94,.15); color: #86efac; }
+  .pill.wait { background: rgba(240,194,70,.15); color: var(--accent-gold); }
+  .pill.bad { background: rgba(239,68,68,.15); color: #fecaca; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: .93rem; }
+  th { text-align: left; font-size: .78rem; color: var(--text-muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  td { padding: 9px 8px; border-bottom: 1px solid rgba(255,255,255,.05); }
+  td a { color: var(--accent-gold); }
+  .empty { color: var(--text-muted); font-size: .92rem; margin-top: 10px; }
+  a:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 2px; }
+  @media (max-width: 720px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    table, tbody, tr { display: block; }
+    tr:first-child { display: none; }
+    tr { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    td { border: 0; padding: 0; }
+    .acc td:nth-child(2) { order: -1; flex-basis: 100%; font-weight: 700; }
+    .acc td:nth-child(1) { color: var(--text-secondary); margin-right: auto; }
+    #taches td:first-child { flex-basis: 100%; font-weight: 700; }
+    #taches td:nth-child(2) { color: var(--accent-gold); flex-basis: 100%; }
+    #taches td:nth-child(3) { color: var(--text-secondary); }
+  }
+</style>
+</head>
+<body>
+<main class="sv">
+  <div class="sv-head"><h1>Suivi des <span>comptes</span></h1><p class="maj" id="maj">Chargement…</p></div>
+  <div class="tiles" id="tiles"></div>
+  <h2>Voix ElevenLabs</h2>
+  <div class="box" id="voix"></div>
+  <h2>Comptes Instagram</h2>
+  <div id="comptes"></div>
+  <h2>Tâches automatiques</h2>
+  <div class="box"><table id="taches"></table></div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const nf = n => Number(n).toLocaleString('fr-FR');
+const jour = d => d.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' }) + ' · ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+function etat(p, now) {
+  if (p.statut === 'publie') return ['ok', 'Publié'];
+  if (p.statut === 'erreur') return ['bad', 'Erreur'];
+  return new Date(p.quand) < now ? ['wait', 'Heure passée, à confirmer'] : ['', 'Programmé'];
+}
+fetch('data.json?' + Date.now()).then(r => r.json()).then(D => {
+  const now = new Date(), posts = D.comptes.flatMap(c => c.posts);
+  const pub = posts.filter(p => p.statut === 'publie').length;
+  const venir = posts.filter(p => p.statut !== 'publie' && new Date(p.quand) >= now).length;
+  const v = D.voix, pct = Math.min(100, Math.round(v.utilises / v.limite * 100));
+  $('maj').textContent = 'Mis à jour le ' + jour(new Date(D.maj));
+  $('tiles').innerHTML =
+    `<div class="tile"><div class="lbl">Comptes gérés</div><div class="val">${D.comptes.length}</div><div class="sub">${D.comptes.filter(c => c.etat === 'automatique').length} en automatique</div></div>` +
+    `<div class="tile"><div class="lbl">Vidéos publiées</div><div class="val">${pub}</div><div class="sub">confirmées par Metricool</div></div>` +
+    `<div class="tile"><div class="lbl">Vidéos à venir</div><div class="val">${venir}</div><div class="sub">déjà programmées</div></div>` +
+    `<div class="tile gold"><div class="lbl">Crédits voix utilisés</div><div class="val">${pct} %</div><div class="sub">${nf(v.utilises)} sur ${nf(v.limite)}</div></div>`;
+  const reste = v.limite - v.utilises, jours = Math.max(1, Math.ceil((new Date(v.reset) - now) / 864e5));
+  $('voix').innerHTML =
+    `<div class="bar${pct >= 80 ? ' alert' : ''}"><i style="width:${pct}%"></i></div>` +
+    `<p class="note"><b>${nf(reste)} crédits restants</b> jusqu'au ${new Date(v.reset).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} (forfait ${esc(v.forfait)}), soit ${nf(Math.floor(reste / jours))} par jour pendant ${jours} jours.` +
+    (v.usd_par_credit ? ` Dépensé ce mois-ci : environ ${(v.utilises * v.usd_par_credit).toFixed(2).replace('.', ',')} $ de crédits, au tarif affiché par ElevenLabs.` : '') + `</p>` +
+    (pct >= 80 ? `<p class="note warn">Le forfait est presque épuisé : les vidéos s'arrêteront faute de voix.</p>` : '');
+  $('comptes').innerHTML = D.comptes.map(c => {
+    const rows = c.posts.slice().sort((a, b) => a.quand < b.quand ? 1 : -1).map(p => { const e = etat(p, now);
+      return `<tr><td>${jour(new Date(p.quand))}</td><td>${esc(p.sujet)}</td><td><span class="pill ${e[0]}">${e[1]}</span></td><td>${p.lien ? `<a href="${esc(p.lien)}" target="_blank" rel="noopener">Voir</a>` : ''}</td></tr>`; }).join('');
+    return `<div class="box acc"><div class="acc-top"><a href="https://www.instagram.com/${esc(c.compte)}/" target="_blank" rel="noopener">@${esc(c.compte)}</a>` +
+      `<span class="pill ${c.etat === 'automatique' ? 'ok' : 'wait'}">${esc(c.etat)}</span></div>` +
+      `<p class="note">${esc(c.format)}${c.creneaux.length ? ' · tous les jours à ' + c.creneaux.map(esc).join(', ') : ''} · marque Metricool « ${esc(c.marque_metricool)} »</p>` +
+      (rows ? `<table><tr><th>Date</th><th>Sujet</th><th>État</th><th></th></tr>${rows}</table>` : `<p class="empty">Aucune vidéo programmée pour l'instant.</p>`) + `</div>`;
+  }).join('');
+  $('taches').innerHTML = '<tr><th>Tâche</th><th>Quand</th><th>Ce qu\'elle fait</th></tr>' + D.taches.map(t => `<tr><td>${esc(t.nom)}</td><td>${esc(t.quand)}</td><td>${esc(t.role)}</td></tr>`).join('');
+}).catch(() => { $('maj').textContent = 'Données indisponibles pour le moment.'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;font-weight:400;src:url(node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:500;src:url(node_modules/@fontsource/outfit/files/outfit-latin-500-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:700;src:url(node_modules/@fontsource/outfit/files/outfit-latin-700-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+body{font-family:Outfit,sans-serif;font-weight:500}
+#st{position:absolute;inset:0;overflow:hidden;background:var(--bg);color:var(--fg)}
+#grid{position:absolute;inset:-60px;background-image:radial-gradient(var(--fg) 2px,transparent 2.6px);background-size:60px 60px;opacity:.09}
+#brand{position:absolute;left:130px;top:150px;font-weight:700;font-size:36px;letter-spacing:.5px}
+#prog{position:absolute;left:130px;top:214px;width:820px;height:4px;background:color-mix(in srgb,var(--fg) 22%,transparent)}
+#prog i{display:block;height:100%;background:var(--fg);transform-origin:left}
+#sc{position:absolute;left:130px;top:290px;width:820px;height:1230px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.m{overflow:hidden;padding:.06em 0 .02em;line-height:1}
+.m>span{display:inline-block;white-space:nowrap}
+.big{font-family:Anton;text-transform:uppercase;line-height:1.02}
+.big.f>span{background:var(--fg);color:var(--bg);padding:.02em .12em .05em}
+.sm{font-size:58px;line-height:1.18;font-weight:500;opacity:.92;margin:14px 0}
+.sm>span{white-space:normal}
+.strike{position:relative}
+.strike b{position:absolute;left:-2%;top:54%;height:.11em;width:104%;background:var(--fg);transform-origin:left;outline:6px solid var(--bg)}
+.leg{font-size:56px;line-height:1.2;font-weight:500;margin-top:56px;max-width:820px}
+.sur{font-size:54px;line-height:1.15;font-weight:700;margin-bottom:44px}
+.row{display:flex;gap:36px;align-items:flex-end}
+.card{width:372px;height:526px;border:7px solid var(--fg);border-radius:30px;position:relative;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.card .r{font-family:Anton;font-size:310px;line-height:1}
+.card .s{position:absolute;font-size:84px;line-height:1}
+.card .s.a{left:24px;top:20px}.card .s.b{right:24px;bottom:20px;transform:rotate(180deg)}
+.card.back{background:repeating-linear-gradient(45deg,var(--fg) 0 7px,var(--bg) 7px 26px)}
+.card.back::after{content:"";position:absolute;inset:26px;border:7px solid var(--fg);border-radius:14px;background:var(--bg)}
+.num{font-family:Anton;font-size:500px;line-height:.95;white-space:nowrap}
+.cells{display:grid;gap:16px}
+.cell{height:var(--ch,150px);border:6px solid var(--fg);border-radius:18px;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:var(--cf,96px)}
+.cell.on{background:var(--fg);color:var(--bg)}
+.chips{display:flex;gap:40px;align-items:flex-end}
+.chip{text-align:center}
+.chip i{display:flex;align-items:center;justify-content:center;border:8px solid var(--fg);border-radius:50%;font-style:normal;font-family:Anton;position:relative}
+.chip i::after{content:"";position:absolute;inset:16px;border:5px dashed var(--fg);border-radius:50%}
+.chip p{font-size:54px;margin-top:28px}
+.field{margin:44px 0;border:7px solid var(--fg);border-radius:26px;height:150px;width:820px;display:flex;align-items:center;padding:0 40px;font-size:74px;font-weight:700}
+.field u{display:inline-block;width:6px;height:84px;background:var(--fg);margin-left:10px;text-decoration:none}
+#wipe{position:absolute;inset:0;background:var(--fg)}
+#age{position:absolute;left:130px;top:1560px;font-size:32px;opacity:.6}
+</style></head><body><div id="st"><div id="grid"></div><div id="brand">♠ Tuto Blackjack</div><div id="prog"><i></i></div><div id="sc"></div><div id="age"></div><div id="wipe"></div></div>
+<script>
+const F=JSON.parse(new URLSearchParams(location.search).get('F'));const SC=F.scenes,TOT=F.total;
+const cl=x=>Math.max(0,Math.min(1,x)),ez=x=>1-Math.pow(1-cl(x),4),eb=x=>{x=cl(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const cv=document.createElement('canvas').getContext('2d');
+function fit(txt,max,w){cv.font='400 100px Anton';const m=cv.measureText(txt.toUpperCase()).width/100;return Math.min(max,Math.floor(w/m));}
+const ROUGE={'♥':1,'♦':1};
+function mot(l,u,i){ // ligne animee
+  if(typeof l==='string')l={t:l};const d=l.d!=null?l.d:i*0.16;const e=ez((u-d)/0.5);
+  if(l.p)return `<div class="m sm"><span style="transform:translateY(${(1-e)*110}%);opacity:${e}">${esc(l.t)}</span></div>`;
+  const fs=fit(l.t,l.max||330,l.f?750:820);
+  const bar=l.b?`<b style="transform:scaleX(${ez((u-d-(l.bd||0.7))/0.4)})"></b>`:'';
+  return `<div class="m big${l.f?' f':''}" style="font-size:${fs}px"><span class="${l.b?'strike':''}" style="transform:translateY(${(1-e)*112}%)">${esc(l.t)}${bar}</span></div>`;
+}
+function leg(s,u,d){return s?`<div class="leg" style="opacity:${ez((u-d)/0.4)};transform:translateY(${(1-ez((u-d)/0.4))*30}px)">${esc(s)}</div>`:'';}
+function sur(s,u){return s?`<div class="sur" style="opacity:${ez(u/0.3)}">${esc(s)}</div>`:'';}
+const R={
+ mots(s,u){return s.lignes.map((l,i)=>mot(l,u,i)).join('');},
+ cartes(s,u){
+  const c=s.cartes.map((c,i)=>{const e=eb((u-0.1-i*0.22)/0.55),o=cl((u-0.1-i*0.22)/0.15);
+   const st=`style="opacity:${o};transform:translateY(${(1-e)*240}px) rotate(${(1-e)*-14+(i-(s.cartes.length-1)/2)*3}deg)"`;
+   if(c==='?')return `<div class="card back" ${st}></div>`;
+   const r=c.slice(0,-1),su=c.slice(-1);
+   return `<div class="card" ${st}><span class="s a">${su}</span><span class="r">${r}</span><span class="s b">${su}</span></div>`;}).join('');
+  return sur(s.sur,u)+`<div class="row">${c}</div>`+leg(s.leg,u,0.6);},
+ chiffre(s,u){const e=ez((u-0.1)/1.1);const v=(s.de||0)+(s.a-(s.de||0))*e;
+  const txt=(s.pre||'')+(s.dec?v.toFixed(s.dec).replace('.',','):Math.round(v))+(s.suf||'');
+  const fs=Math.min(500,fit((s.pre||'')+s.a+(s.suf||''),500,810));
+  return sur(s.sur,u)+`<div class="num" style="font-size:${fs}px;transform:scale(${0.86+0.14*ez(u/0.5)});transform-origin:left bottom;opacity:${cl(u/0.15)}">${esc(txt)}</div>`+leg(s.leg,u,0.9);},
+ grille(s,u){const n=s.cases.length,cols=s.cols||Math.min(n,5);const dp=s.dp!=null?s.dp:0.5+n*0.05;
+  const c=s.cases.map((x,i)=>{const e=eb((u-0.08-i*0.05)/0.4);const on=s.pleins.includes(i)&&u>dp+s.pleins.indexOf(i)*0.12;
+   return `<div class="cell${on?' on':''}" style="transform:scale(${e});opacity:${cl((u-0.08-i*0.05)/0.1)}">${esc(x)}</div>`;}).join('');
+  return sur(s.sur,u)+`<div class="cells" style="grid-template-columns:repeat(${cols},1fr);width:820px;${cols<=3?"--ch:260px;--cf:170px":""}">${c}</div>`+
+   (s.titre?`<div class="m big" style="font-size:${fit(s.titre,170,820)}px;margin-top:50px"><span style="transform:translateY(${(1-ez((u-dp)/0.5))*112}%)">${esc(s.titre)}</span></div>`:'')+leg(s.leg,u,dp+0.3);},
+ jetons(s,u){const c=s.items.map((it,i)=>{const d=it.d!=null?it.d:0.1+i*0.5,e=eb((u-d)/0.5),sz=it.sz||370;
+   return `<div class="chip" style="opacity:${cl((u-d)/0.12)};transform:translateY(${(1-e)*160}px)"><i style="width:${sz}px;height:${sz}px;font-size:${sz*0.33}px">${esc(it.v)}</i><p>${esc(it.l)}</p></div>`;}).join('');
+  return sur(s.sur,u)+`<div class="chips">${c}</div>`+leg(s.leg,u,1.0);},
+ fin(s,u){const t2=s.t2||1.6;const w='TUTO',k=Math.floor(cl((u-0.35)/0.6)*w.length+1e-6);
+  return mot({t:'Commente',max:210},u,0)+
+   `<div class="field" style="opacity:${ez((u-0.15)/0.3)}">${w.slice(0,k)}<u style="opacity:${Math.floor(u*2.2)%2?0:1}"></u></div>`+
+   mot({t:'et je t’envoie',p:1,d:t2},u,0)+mot({t:'ton tableau',max:200,d:t2+0.15},u,0)+mot({t:'de blackjack',max:200,d:t2+0.3},u,0)+mot({t:'gratuitement',f:1,max:200,d:t2+0.5},u,0);}
+};
+const st=document.getElementById('st'),sc=document.getElementById('sc'),wp=document.getElementById('wipe'),pg=document.querySelector('#prog i'),gr=document.getElementById('grid');
+document.getElementById('age').textContent=F.mention||'18+ · Jouer comporte des risques';
+function render(t){
+  let i=0;while(i+1<SC.length&&SC[i+1].t<=t)i++;const s=SC[i],u=Math.max(0,t-s.t);
+  const inv=!!s.inv,pinv=i>0&&!!SC[i-1].inv;
+  st.style.setProperty('--bg',inv?'#fff':'#000');st.style.setProperty('--fg',inv?'#000':'#fff');
+  sc.innerHTML=R[s.type](s,u);
+  // sortie douce avant la scene suivante
+  const nx=i+1<SC.length?SC[i+1].t:TOT+9;const out=cl((nx-t)/0.12);sc.style.opacity=out;
+  // volet quand la couleur de fond change
+  if(i>0&&inv!==pinv&&u<0.34){wp.style.display='block';wp.style.transform=`translateY(${-ez(u/0.34)*100}%)`;}else wp.style.display='none';
+  pg.style.transform=`scaleX(${cl(t/TOT)})`;gr.style.transform=`translate(${(t*6)%60}px,${(t*9)%60}px)`;
+}
+window.render=render;render(0);
+</script></body></html>

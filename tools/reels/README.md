@@ -91,6 +91,13 @@ au format validé par Alex et les programme dans Metricool. Ne change ni le form
     « 💬 Commente TUTO et je t'envoie le tableau complet de la stratégie de base, gratuitement. », la ligne
     « 18+ · Jouer comporte des risques. », puis 6 à 8 hashtags français (#blackjack #strategieblackjack #blackjackfr #casino #jeudecartes #tutoblackjack …).
     Vérifie ensuite avec `getScheduledPosts` que chaque Reel apparaît bien au bon créneau.
+11 bis. **Mettre à jour la page de suivi** `admin/suivi/data.json` (elle alimente tutoblackjack.com/admin/suivi/), puis commit et push :
+    - `maj` : date et heure de Paris au format ISO ;
+    - `voix` : `utilises`, `limite` et `reset` (date AAAA-MM-JJ) lus avec `account_get_usage` (ElevenLabs) ;
+    - `comptes[].posts` du compte concerné : une entrée par Reel renvoyé par `getScheduledPosts` depuis 30 jours
+      (`quand` AAAA-MM-JJTHH:MM, `sujet` court, `statut` `publie` si le statut Metricool est PUBLISHED avec son `lien` public,
+      `erreur` si Metricool signale une erreur, sinon `programme`). Garde les entrées plus anciennes déjà marquées `publie`, 60 au maximum par compte.
+    Ne touche pas aux autres champs ni aux autres comptes.
 12. **Rendre compte** en français, en quelques lignes : Reels programmés (situation, date, heure), Reels abandonnés et pourquoi,
     crédits ElevenLabs utilisés si connus, et tout ce qui a échoué. Si une étape bloque (connecteur injoignable, téléchargement refusé,
     push refusé), arrête-toi proprement, ne contourne rien, et dis exactement ce qui a bloqué.
