@@ -4,7 +4,7 @@
 //
 // Variables d'environnement Netlify (à créer par Alex, jamais dans le dépôt) :
 //   IG_VERIFY_TOKEN      phrase libre, la même que celle saisie dans Meta (vérification du webhook)
-//   IG_APP_SECRET        « Instagram app secret » de l'application Meta (signature des appels)
+//   IG_APP_SECRET        « App secret » de l'application Meta (App settings > Basic), sert à vérifier la signature des appels
 //   IG_TOKEN_<ID>        jeton d'accès du compte, <ID> = identifiant numérique Instagram du compte
 //   IG_DM_TEXT           message envoyé (optionnel) ; IG_DM_TEXT_<ID> pour un message propre à un compte
 //   IG_KEYWORD           mot-clé (optionnel, TUTO par défaut)
@@ -27,7 +27,9 @@ async function repondre(compte, commentaire) {
   const token = env(`IG_TOKEN_${compte}`);
   if (!token) { console.warn("ig-webhook: pas de jeton pour le compte", compte); return; }
   const message = env(`IG_DM_TEXT_${compte}`) || env("IG_DM_TEXT") || DEFAUT;
-  const r = await fetch(`https://graph.instagram.com/${compte}/messages`, {
+  // Jeton « IG… » (Instagram Login) -> graph.instagram.com ; jeton « EAA… » (Unified / Facebook Login) -> graph.facebook.com
+  const hote = token.startsWith("IG") ? "graph.instagram.com" : "graph.facebook.com";
+  const r = await fetch(`https://${hote}/${compte}/messages`, {
     method: "POST",
     headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
     body: JSON.stringify({ recipient: { comment_id: commentaire }, message: { text: message } }),
