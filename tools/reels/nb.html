@@ -67,11 +67,12 @@ const R={
    if(c==='?')return `<div class="card back" ${st}></div>`;
    const r=c.slice(0,-1),su=c.slice(-1);
    return `<div class="card" ${st}><span class="s a">${su}</span><span class="r">${r}</span><span class="s b">${su}</span></div>`;}).join('');
-  return sur(s.sur,u)+`<div class="row">${c}</div>`+leg(s.leg,u,0.6);},
+  const n=s.cartes.length,z=Math.min(1,820/(n*372+(n-1)*36));
+  return sur(s.sur,u)+`<div class="row" style="zoom:${z}">${c}</div>`+leg(s.leg,u,s.ld!=null?s.ld:0.6);},
  chiffre(s,u){const e=ez((u-0.1)/1.1);const v=(s.de||0)+(s.a-(s.de||0))*e;
   const txt=(s.pre||'')+(s.dec?v.toFixed(s.dec).replace('.',','):Math.round(v))+(s.suf||'');
   const fs=Math.min(500,fit((s.pre||'')+s.a+(s.suf||''),500,810));
-  return sur(s.sur,u)+`<div class="num" style="font-size:${fs}px;transform:scale(${0.86+0.14*ez(u/0.5)});transform-origin:left bottom;opacity:${cl(u/0.15)}">${esc(txt)}</div>`+leg(s.leg,u,0.9);},
+  return sur(s.sur,u)+`<div class="num" style="font-size:${fs}px;transform:scale(${0.86+0.14*ez(u/0.5)});transform-origin:left bottom;opacity:${cl(u/0.15)}">${esc(txt)}</div>`+leg(s.leg,u,s.ld!=null?s.ld:0.9);},
  grille(s,u){const n=s.cases.length,cols=s.cols||Math.min(n,5);const dp=s.dp!=null?s.dp:0.5+n*0.05;
   const c=s.cases.map((x,i)=>{const e=eb((u-0.08-i*0.05)/0.4);const on=s.pleins.includes(i)&&u>dp+s.pleins.indexOf(i)*0.12;
    return `<div class="cell${on?' on':''}" style="transform:scale(${e});opacity:${cl((u-0.08-i*0.05)/0.1)}">${esc(x)}</div>`;}).join('');
@@ -79,7 +80,7 @@ const R={
    (s.titre?`<div class="m big" style="font-size:${fit(s.titre,170,820)}px;margin-top:50px"><span style="transform:translateY(${(1-ez((u-dp)/0.5))*112}%)">${esc(s.titre)}</span></div>`:'')+leg(s.leg,u,dp+0.3);},
  jetons(s,u){const c=s.items.map((it,i)=>{const d=it.d!=null?it.d:0.1+i*0.5,e=eb((u-d)/0.5),sz=it.sz||370;
    return `<div class="chip" style="opacity:${cl((u-d)/0.12)};transform:translateY(${(1-e)*160}px)"><i style="width:${sz}px;height:${sz}px;font-size:${sz*0.33}px">${esc(it.v)}</i><p>${esc(it.l)}</p></div>`;}).join('');
-  return sur(s.sur,u)+`<div class="chips">${c}</div>`+leg(s.leg,u,1.0);},
+  return sur(s.sur,u)+`<div class="chips">${c}</div>`+leg(s.leg,u,s.ld!=null?s.ld:1.0);},
  fin(s,u){const t2=s.t2||1.6;const w='TUTO',k=Math.floor(cl((u-0.35)/0.6)*w.length+1e-6);
   return mot({t:'Commente',max:210},u,0)+
    `<div class="field" style="opacity:${ez((u-0.15)/0.3)}">${w.slice(0,k)}<u style="opacity:${Math.floor(u*2.2)%2?0:1}"></u></div>`+

@@ -1,21 +1,101 @@
 {
- "maj": "2026-11-18T22:45:00+01:00",
- "voix": {"forfait": "starter", "utilises": 8693, "limite": 40000, "reset": "2026-12-12", "usd_par_credit": 0.0002},
+ "maj": "2026-11-18T23:05:00+01:00",
+ "voix": {
+  "forfait": "starter",
+  "utilises": 11469,
+  "limite": 40000,
+  "reset": "2026-12-12",
+  "usd_par_credit": 0.0002
+ },
  "comptes": [
-  {"compte": "tutoblackjack", "marque_metricool": "tutoblackjack", "format": "Reels interactifs courts (tapis vert)", "creneaux": ["10:00", "12:30", "18:00"], "etat": "automatique",
+  {
+   "compte": "tutoblackjack",
+   "marque_metricool": "tutoblackjack",
+   "format": "Reels interactifs courts (tapis vert)",
+   "creneaux": [
+    "10:00",
+    "12:30",
+    "18:00"
+   ],
+   "etat": "automatique",
    "posts": [
-    {"quand": "2026-11-18T21:40", "sujet": "16 contre 10", "statut": "publie", "lien": "https://www.instagram.com/reel/Df5YxGlidUO/"},
-    {"quand": "2026-11-19T10:00", "sujet": "Paire de 8 contre 10", "statut": "programme"},
-    {"quand": "2026-11-19T12:30", "sujet": "11 contre 6", "statut": "programme"},
-    {"quand": "2026-11-19T18:00", "sujet": "As-7 contre 9", "statut": "programme"},
-    {"quand": "2026-11-20T10:00", "sujet": "12 contre 4", "statut": "programme"},
-    {"quand": "2026-11-20T12:30", "sujet": "Paire d'As contre 10", "statut": "programme"},
-    {"quand": "2026-11-20T18:00", "sujet": "10 contre 9", "statut": "programme"}
-   ]},
-  {"compte": "tuto_blackjack", "marque_metricool": "JUNICASINO", "format": "Vidéos longues noir et blanc (stratégies, histoires)", "creneaux": [], "etat": "en préparation", "posts": []}
+    {
+     "quand": "2026-11-18T21:40",
+     "sujet": "16 contre 10",
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df5YxGlidUO/"
+    },
+    {
+     "quand": "2026-11-19T10:00",
+     "sujet": "Paire de 8 contre 10",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-19T12:30",
+     "sujet": "11 contre 6",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-19T18:00",
+     "sujet": "As-7 contre 9",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-20T10:00",
+     "sujet": "12 contre 4",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-20T12:30",
+     "sujet": "Paire d'As contre 10",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-20T18:00",
+     "sujet": "10 contre 9",
+     "statut": "programme"
+    }
+   ]
+  },
+  {
+   "compte": "tuto_blackjack",
+   "marque_metricool": "JUNICASINO",
+   "format": "Vidéos longues noir et blanc (stratégies, histoires)",
+   "creneaux": [
+    "11:15",
+    "16:00",
+    "20:30"
+   ],
+   "etat": "premières vidéos programmées",
+   "posts": [
+    {
+     "quand": "2026-11-19T11:15",
+     "sujet": "L'assurance, le pire pari de la table",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-19T16:00",
+     "sujet": "Le seul avantage du casino",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-19T20:30",
+     "sujet": "Don Johnson : 15 millions pris à Atlantic City",
+     "statut": "programme"
+    }
+   ]
+  }
  ],
  "taches": [
-  {"nom": "Reels quotidiens tutoblackjack", "quand": "chaque nuit vers 2h17", "role": "crée et programme les Reels des deux jours suivants"},
-  {"nom": "Confirmation des Reels publiés", "quand": "10h35, 12h35 et 18h35", "role": "vérifie la publication et t'envoie une notification"}
+  {
+   "nom": "Reels quotidiens tutoblackjack",
+   "quand": "chaque nuit vers 2h17",
+   "role": "crée et programme les Reels des deux jours suivants"
+  },
+  {
+   "nom": "Confirmation des Reels publiés",
+   "quand": "10h35, 12h35 et 18h35",
+   "role": "vérifie la publication et t'envoie une notification"
+  }
  ]
 }
