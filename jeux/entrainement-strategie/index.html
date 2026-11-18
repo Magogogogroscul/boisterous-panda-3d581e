@@ -18,24 +18,24 @@
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Entraînement éclair à la stratégie de base du blackjack", "url": "https://tutoblackjack.com/jeux/entrainement-strategie/", "description": "Exercice gratuit pour mémoriser la stratégie de base du blackjack avec correction immédiate.", "applicationCategory": "EducationalApplication", "operatingSystem": "Tous (navigateur web)", "browserRequirements": "JavaScript requis", "inLanguage": "fr", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://tutoblackjack.com/"}, {"@type": "ListItem", "position": 2, "name": "Jeux", "item": "https://tutoblackjack.com/jeux/"}, {"@type": "ListItem", "position": 3, "name": "Entraînement stratégie", "item": "https://tutoblackjack.com/jeux/entrainement-strategie/"}]}]</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
 .page { padding-top:22px; }
 .intro { font-size:1.05rem; }
 .tapis { background:radial-gradient(ellipse at 50% 0%, #14532d 0%, #0d3321 55%, #0a2418 100%); border:1px solid rgba(240,194,70,.35); border-radius:18px; padding:14px 12px 16px; margin:20px -8px 8px; box-shadow:0 8px 40px rgba(0,0,0,.4); }
-.tapis-barre { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-family:'Fraunces',sans-serif; font-weight:700; font-size:.95rem; color:var(--text-primary); }
+.tapis-barre { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-family:'Outfit',sans-serif; font-weight:700; font-size:.95rem; color:var(--text-primary); }
 .tapis-barre span b { color:var(--accent-gold); }
 .zone { text-align:center; margin-top:12px; }
 .zone-titre { font-size:.75rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.6); font-weight:700; margin-bottom:6px; }
 .zone-titre b { color:#fff; font-size:.95rem; letter-spacing:0; margin-left:6px; background:rgba(0,0,0,.35); border-radius:50px; padding:2px 10px; }
 .cartes { display:flex; justify-content:center; min-height:84px; padding-left:22px; }
-.carte { flex:0 0 auto; width:58px; height:84px; margin-left:-22px; border-radius:8px; background:#fff; color:#111827; font-family:'Fraunces',sans-serif; font-weight:800; font-size:1.2rem; line-height:1; padding:6px 7px; display:flex; flex-direction:column; justify-content:space-between; text-align:left; box-shadow:0 3px 10px rgba(0,0,0,.45); border:1px solid #d1d5db; animation:poser .25s ease; }
+.carte { flex:0 0 auto; width:58px; height:84px; margin-left:-22px; border-radius:8px; background:#fff; color:#111827; font-family:'Outfit',sans-serif; font-weight:800; font-size:1.2rem; line-height:1; padding:6px 7px; display:flex; flex-direction:column; justify-content:space-between; text-align:left; box-shadow:0 3px 10px rgba(0,0,0,.45); border:1px solid #d1d5db; animation:poser .25s ease; }
 .carte.rouge { color:#dc2626; }
 .carte .k-bas { align-self:flex-end; font-size:1.7rem; }
 .carte.dos { background:repeating-linear-gradient(45deg,#1e3a8a,#1e3a8a 6px,#2548b0 6px,#2548b0 12px); border:3px solid #fff; }
 @keyframes poser { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:none; } }
-.jeu-btn { appearance:none; border:0; cursor:pointer; min-height:54px; padding:10px 8px; border-radius:12px; font-family:'Fraunces',sans-serif; font-weight:700; font-size:1.05rem; color:#fff; touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:transform .1s, opacity .2s; }
+.jeu-btn { appearance:none; border:0; cursor:pointer; min-height:54px; padding:10px 8px; border-radius:12px; font-family:'Outfit',sans-serif; font-weight:700; font-size:1.05rem; color:#fff; touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:transform .1s, opacity .2s; }
 .jeu-btn:active { transform:scale(.97); }
 .jeu-btn:disabled { opacity:.3; cursor:not-allowed; }
 .jeu-btn:focus-visible, .jeton:focus-visible { outline:3px solid #fff; outline-offset:2px; }
@@ -61,7 +61,7 @@
 
 .correction { margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(0,0,0,.4); color:var(--text-primary); font-size:.95rem; line-height:1.55; border-left:4px solid var(--accent-green); }
 .correction.ko { border-left-color:var(--accent-red); }
-.correction b { display:block; font-family:'Fraunces',sans-serif; font-size:1.05rem; margin-bottom:2px; }
+.correction b { display:block; font-family:'Outfit',sans-serif; font-size:1.05rem; margin-bottom:2px; }
 .correction.ok b { color:var(--accent-green); }
 .correction.ko b { color:#fca5a5; }
 #choix .jeu-btn.bon { opacity:1; box-shadow:0 0 0 3px #fff, 0 0 18px rgba(34,197,94,.9); }
@@ -69,8 +69,8 @@
 .jeu-btn.large { width:100%; margin-top:12px; }
 </style>
 </head>
-<body class="on-felt">
-<nav class="site-nav" aria-label="Navigation principale"><a class="brand" href="/">Tuto Blackjack</a>
+<body>
+<nav class="site-nav" aria-label="Navigation principale">
   <a href="/">Accueil</a>
   <a href="/jeux/">Jeux</a>
   <a href="/blog/">Blog</a>
