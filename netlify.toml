@@ -56,3 +56,8 @@
   to = "/404"
   status = 404
   force = true
+
+[[headers]]
+  for = "/reels/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
