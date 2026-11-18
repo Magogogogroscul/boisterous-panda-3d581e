@@ -433,3 +433,46 @@ body { padding-bottom: 96px; }
 .breadcrumb a { color:var(--text-muted); }
 .inline-cta { margin:30px 0; padding:22px; border-radius:16px; background:var(--bg-card); border:1px solid rgba(34,197,94,.4); text-align:center; }
 .inline-cta p { color:var(--text-primary); font-weight:600; }
+
+/* ===== FINITIONS DES PAGES INTERIEURES ===== */
+body { font-size: 17px; -webkit-font-smoothing: antialiased; }
+.site-nav { justify-content: flex-start; align-items: center; gap: 8px 26px; padding: 16px 24px; max-width: 1040px; margin: 0 auto; background: transparent; border-bottom: 0; font-size: .95rem; }
+body > .site-nav { position: relative; }
+body > .site-nav::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 100vw; margin-left: -50vw; border-bottom: 1px solid rgba(255,255,255,.07); }
+.site-nav .brand { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; margin-right: auto; letter-spacing: -.3px; }
+.site-nav .brand span { color: var(--accent-gold); }
+.site-nav a[aria-current=page] { color: var(--accent-gold); }
+.page { max-width: 780px; padding: 34px 22px 72px; }
+.breadcrumb { margin-bottom: 26px; font-size: .84rem; }
+.page h1 { font-size: clamp(2rem, 5.6vw, 3rem); line-height: 1.12; letter-spacing: -.8px; margin-bottom: 16px; }
+.page .meta { font-size: .86rem; margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.page .lead { font-size: 1.2rem; line-height: 1.65; margin-bottom: 22px; }
+.page p, .page li { font-size: 1.04rem; line-height: 1.8; margin-bottom: 16px; }
+.page h2 { font-size: clamp(1.45rem, 3.8vw, 1.85rem); line-height: 1.22; letter-spacing: -.3px; margin: 54px 0 16px; padding-left: 16px; border-left: 4px solid var(--accent-gold); }
+.page h3 { font-size: 1.2rem; line-height: 1.3; margin: 32px 0 10px; }
+.page a:not(.cta-btn) { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.page table { border-collapse: separate; border-spacing: 0; margin: 22px 0 26px; font-size: .96rem; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; overflow: hidden; background: var(--bg-card); }
+.page th, .page td { border: 0; border-bottom: 1px solid rgba(255,255,255,.07); padding: 13px 16px; line-height: 1.5; }
+.page tr:last-child td { border-bottom: 0; }
+.page th { background: var(--bg-card-alt); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .9rem; }
+.page .tip-box { background: rgba(240,194,70,.08); border-left: 3px solid var(--accent-gold); border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
+.inline-cta { margin: 44px 0; padding: 30px 26px; border-radius: 20px; background: linear-gradient(180deg, #172238 0%, var(--bg-card) 100%); border: 1px solid rgba(34,197,94,.45); box-shadow: 0 18px 44px rgba(0,0,0,.35); }
+.inline-cta p { font-size: 1.12rem; line-height: 1.5; margin-bottom: 18px; }
+.inline-cta .cta-btn { animation: none; }
+.post-grid { gap: 20px; margin: 34px 0; }
+.post-card { padding: 26px 24px; border-radius: 18px; transition: border-color .2s, transform .2s; }
+.post-card:hover { border-color: rgba(240,194,70,.45); transform: translateY(-2px); }
+.post-card h2 { border: 0; padding: 0; font-size: 1.28rem; margin: 0 0 12px; }
+.post-card p { font-size: .98rem; line-height: 1.65; }
+.related { gap: 16px; margin: 22px 0; }
+.related li { padding: 18px 20px; }
+.faq-block h3 { margin-top: 28px; }
+footer { line-height: 1.7; padding: 46px 20px; }
+@media (max-width: 640px) {
+  .site-nav { gap: 6px 18px; padding: 14px 16px; }
+  .site-nav .brand { flex-basis: 100%; }
+  .page { padding: 24px 18px 60px; }
+  .page h2 { margin-top: 42px; }
+  .inline-cta { padding: 26px 20px; }
+  .inline-cta .cta-btn { width: 100%; }
+}

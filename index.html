@@ -438,6 +438,76 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 .sticky-cta { display: block; }
 .sticky-cta .live-text { margin-top: 6px; font-size: .72rem; color: var(--text-muted); }
 body { padding-bottom: 96px; }
+/* ===== FINITIONS : titres, espacements, haut de page, tableau, bloc email ===== */
+body { font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+section { padding: 72px 20px; }
+.container { max-width: 980px; }
+.section-title { line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px; }
+.section-sub { font-size: 1.05rem; line-height: 1.6; max-width: 600px; margin-bottom: 40px; }
+.cta-btn { animation: none; letter-spacing: .3px; padding: 17px 40px; }
+.cta-divider { display: none; }
+/* haut de page */
+.hero { min-height: 0; padding: 78px 20px 64px; }
+.hero-content { max-width: 780px; }
+.hero .hero-stat { margin-bottom: 22px; }
+.hero-title { font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: 1.04; letter-spacing: -1px; }
+.hero-offer { font-size: clamp(1.2rem, 3.4vw, 1.7rem); margin-top: 18px; }
+.hero-cta-row { margin-top: 32px; gap: 14px; align-items: stretch; }
+.hero-cta-row .cta-btn, .hero-cta-row .cta-btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; }
+.hero-perks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; margin-top: 26px; }
+.hero-perks li { font-size: .86rem; font-weight: 600; color: var(--text-secondary); padding: 7px 16px; border-radius: 50px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); }
+.hero-perks li strong { color: #fff; }
+.hero-legal { margin-top: 18px; font-size: .78rem; }
+.floating-card { opacity: .07; }
+.social-proof-bar { gap: 20px 56px; padding: 34px 20px; }
+.proof-stat .num { font-size: 2rem; }
+.proof-stat .label { font-size: .86rem; }
+/* tableau */
+.table-section { padding-top: 64px; }
+.table-wrapper { padding: 30px 18px 24px; border-radius: 20px; }
+.table-block { margin-bottom: 34px; }
+.table-block-title { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 12px; }
+.strat-table { border-collapse: separate; border-spacing: 2px; }
+.strat-table th, .strat-table td { border: 0; border-radius: 5px; padding: 9px 0; }
+.strat-table thead th { background: #1e2c4a; }
+.strat-table thead th:first-child, .strat-table tbody td:first-child { background: #26365a; }
+.legend { margin-top: 22px; gap: 12px 28px; }
+.legend-item { font-size: 14px; color: var(--text-secondary); }
+/* bloc email sur le tableau flou */
+.gate.locked .table-wrapper { filter: blur(7px); max-height: 660px; }
+.gate.locked .gate-box { top: 34px; width: min(94%, 460px); padding: 30px 28px 26px; border-radius: 20px; border: 1px solid rgba(240,194,70,.55); background: linear-gradient(180deg, #172238 0%, var(--bg-card) 100%); box-shadow: 0 30px 70px rgba(0,0,0,.65); }
+.gate-box h3 { font-size: 1.5rem; line-height: 1.2; margin-bottom: 10px; }
+.gate-box > p { font-size: .98rem; line-height: 1.55; margin-bottom: 18px; }
+.gate-box ul.gate-list { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.gate-box ul.gate-list li { font-size: .8rem; font-weight: 700; color: var(--accent-gold); border: 1px solid rgba(240,194,70,.35); border-radius: 50px; padding: 4px 12px; }
+.gate-box input[type=email] { padding: 15px 16px; font-size: 1.02rem; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.18); margin-bottom: 12px; }
+.gate-box input[type=email]:focus { outline: none; border-color: var(--accent-gold); }
+.gate-box label.consent { font-size: .78rem; line-height: 1.45; margin-bottom: 16px; }
+.gate-box button { padding: 16px; font-size: 1.05rem; border-radius: 12px; }
+/* blocs bonus, cartes, questions */
+.cta-block { padding: 64px 20px; }
+.cta-block h2 { line-height: 1.2; margin-bottom: 12px; }
+.cta-block p { font-size: 1.05rem; margin-bottom: 26px; }
+.tuto-card { padding: 32px 30px; margin-bottom: 20px; border-radius: 16px; }
+.tuto-card h3 { font-size: 1.3rem; line-height: 1.25; margin-bottom: 14px; }
+.tuto-card p, .tuto-card ul { font-size: 1rem; line-height: 1.7; }
+.tuto-card li { margin-bottom: 8px; }
+.tip-box { font-size: .96rem; padding: 16px 20px; margin: 20px 0 4px; }
+.faq-q { padding: 20px 24px; font-size: 1.02rem; }
+.faq-a { font-size: .98rem; line-height: 1.65; }
+footer { padding: 46px 20px; line-height: 1.7; }
+@media (max-width: 640px) {
+  section { padding: 52px 16px; }
+  .hero { padding: 54px 16px 46px; }
+  .hero-cta-row { flex-direction: column; }
+  .hero-cta-row .cta-btn, .hero-cta-row .cta-btn-secondary { width: 100%; }
+  .cta-block { padding: 48px 16px; }
+  .cta-block .cta-btn { width: 100%; max-width: 420px; padding: 16px 20px; }
+  .tuto-card { padding: 24px 20px; }
+  .table-wrapper { padding: 22px 8px 18px; }
+  .gate.locked .gate-box { top: 22px; padding: 26px 20px 22px; }
+  .social-proof-bar { gap: 18px 30px; }
+}
 </style>
 </head>
 <body>
@@ -468,6 +538,7 @@ body { padding-bottom: 96px; }
       <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-hero" data-cta="hero">Récupère ton bonus ici →</a>
       <a href="#tableau" class="cta-btn-secondary">Voir le tableau ↓</a>
     </div>
+    <ul class="hero-perks"><li><strong>100 %</strong> sur ton premier dépôt</li><li><strong>200</strong> free spins</li><li>Tableau de stratégie <strong>gratuit</strong></li></ul>
     <p class="hero-legal">18+ · Offre soumise aux conditions du casino · Jouer comporte des risques</p>
   </div>
 </section>
@@ -488,7 +559,8 @@ body { padding-bottom: 96px; }
     <div class="gate locked" id="gate">
       <div class="gate-box">
         <h3>🔒 Débloque le tableau complet</h3>
-        <p>Entre ton email pour afficher le tableau de stratégie de base (mains dures, souples et paires).</p>
+        <p>Entre ton email et le tableau s’affiche tout de suite, gratuitement.</p>
+        <ul class="gate-list"><li>Mains dures</li><li>Paires</li><li>Mains souples</li></ul>
         <form name="tableau" method="POST" data-netlify="true" netlify-honeypot="site" id="gateForm">
           <input type="hidden" name="form-name" value="tableau">
           <p class="hp"><label>Ne pas remplir : <input name="site"></label></p>
@@ -723,22 +795,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   });
-});
-
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.tuto-card, .faq-item, .testimonial-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
 });
 
 // Counter animation
