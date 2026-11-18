@@ -483,7 +483,8 @@ section { padding: 72px 20px; }
 .gate-box input[type=email] { padding: 15px 16px; font-size: 1.02rem; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.18); margin-bottom: 12px; }
 .gate-box input[type=email]:focus { outline: none; border-color: var(--accent-gold); }
 .gate-box label.consent { font-size: .78rem; line-height: 1.45; margin-bottom: 16px; }
-.gate-box button { padding: 16px; font-size: 1.05rem; border-radius: 12px; }
+.gate-box button { padding: 16px; font-size: 1.05rem; border-radius: 12px; background: #15914a; color: #fff; box-shadow: 0 4px 18px rgba(21,145,74,.35); }
+.gate-box button:hover { background: #178f4b; filter: brightness(1.08); }
 /* blocs bonus, cartes, questions */
 .cta-block { padding: 64px 20px; }
 .cta-block h2 { line-height: 1.2; margin-bottom: 12px; }
@@ -550,7 +551,6 @@ footer { padding: 46px 20px; line-height: 1.7; }
       <div class="gate-box">
         <h3>🔒 Débloque le tableau complet</h3>
         <p>Entre ton email et le tableau s’affiche tout de suite, gratuitement.</p>
-        <ul class="gate-list"><li>Mains dures</li><li>Paires</li><li>Mains souples</li></ul>
         <form name="tableau" method="POST" data-netlify="true" netlify-honeypot="site" id="gateForm">
           <input type="hidden" name="form-name" value="tableau">
           <p class="hp"><label>Ne pas remplir : <input name="site"></label></p>
