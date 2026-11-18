@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackjack gratuit en ligne : joue sans argent</title>
+<link rel="canonical" href="https://tutoblackjack.com/jeux/blackjack/">
+<meta name="description" content="Joue au blackjack gratuit sans inscription : jetons fictifs, sabot de 6 jeux, blackjack payé 3:2 et bouton Conseil pour apprendre la stratégie de base.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Tuto Blackjack">
+<meta property="og:title" content="Blackjack gratuit : joue en ligne sans argent">
+<meta property="og:description" content="Une table de blackjack gratuite avec jetons fictifs et un bouton Conseil qui t&#x27;apprend la stratégie de base.">
+<meta property="og:url" content="https://tutoblackjack.com/jeux/blackjack/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b1120">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebApplication", "name": "Blackjack gratuit", "url": "https://tutoblackjack.com/jeux/blackjack/", "description": "Jeu de blackjack gratuit avec jetons fictifs et conseil de stratégie de base.", "applicationCategory": "GameApplication", "operatingSystem": "Tous (navigateur web)", "browserRequirements": "JavaScript requis", "inLanguage": "fr", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://tutoblackjack.com/"}, {"@type": "ListItem", "position": 2, "name": "Jeux", "item": "https://tutoblackjack.com/jeux/"}, {"@type": "ListItem", "position": 3, "name": "Blackjack gratuit", "item": "https://tutoblackjack.com/jeux/blackjack/"}]}]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.page { padding-top:22px; }
+.intro { font-size:1.05rem; }
+.tapis { background:radial-gradient(ellipse at 50% 0%, #14532d 0%, #0d3321 55%, #0a2418 100%); border:1px solid rgba(240,194,70,.35); border-radius:18px; padding:14px 12px 16px; margin:20px -8px 8px; box-shadow:0 8px 40px rgba(0,0,0,.4); }
+.tapis-barre { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-family:'Outfit',sans-serif; font-weight:700; font-size:.95rem; color:var(--text-primary); }
+.tapis-barre span b { color:var(--accent-gold); }
+.zone { text-align:center; margin-top:12px; }
+.zone-titre { font-size:.75rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.6); font-weight:700; margin-bottom:6px; }
+.zone-titre b { color:#fff; font-size:.95rem; letter-spacing:0; margin-left:6px; background:rgba(0,0,0,.35); border-radius:50px; padding:2px 10px; }
+.cartes { display:flex; justify-content:center; min-height:84px; padding-left:22px; }
+.carte { flex:0 0 auto; width:58px; height:84px; margin-left:-22px; border-radius:8px; background:#fff; color:#111827; font-family:'Outfit',sans-serif; font-weight:800; font-size:1.2rem; line-height:1; padding:6px 7px; display:flex; flex-direction:column; justify-content:space-between; text-align:left; box-shadow:0 3px 10px rgba(0,0,0,.45); border:1px solid #d1d5db; animation:poser .25s ease; }
+.carte.rouge { color:#dc2626; }
+.carte .k-bas { align-self:flex-end; font-size:1.7rem; }
+.carte.dos { background:repeating-linear-gradient(45deg,#1e3a8a,#1e3a8a 6px,#2548b0 6px,#2548b0 12px); border:3px solid #fff; }
+@keyframes poser { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:none; } }
+.jeu-btn { appearance:none; border:0; cursor:pointer; min-height:54px; padding:10px 8px; border-radius:12px; font-family:'Outfit',sans-serif; font-weight:700; font-size:1.05rem; color:#fff; touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:transform .1s, opacity .2s; }
+.jeu-btn:active { transform:scale(.97); }
+.jeu-btn:disabled { opacity:.3; cursor:not-allowed; }
+.jeu-btn:focus-visible, .jeton:focus-visible { outline:3px solid #fff; outline-offset:2px; }
+.b-tirer { background:var(--tbl-tirer); }
+.b-rester { background:var(--tbl-rester); }
+.b-doubler { background:var(--tbl-doubler); color:#1a1a1a; }
+.b-partager { background:var(--tbl-partager); }
+.b-neutre { background:var(--bg-card-alt); border:1px solid rgba(255,255,255,.18); }
+.b-or { background:var(--cta-gradient); color:#1a1a1a; }
+.grille-4 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+.rappel { margin:18px 0; }
+.rappel h2 { margin:0 0 8px; font-size:1.3rem; }
+.legal { font-size:.75rem; color:var(--text-muted); margin:12px 0 0; }
+.inline-cta .cta-btn { max-width:100%; padding-left:22px; padding-right:22px; }
+.inline-cta p.legal { color:var(--text-muted); font-weight:400; }
+[hidden] { display:none !important; }
+@media (min-width:700px) {
+  .tapis { margin-left:0; margin-right:0; padding:22px 24px 24px; }
+  .carte { width:70px; height:100px; font-size:1.4rem; }
+  .cartes { min-height:100px; }
+  .grille-4 { grid-template-columns:repeat(4,1fr); }
+}
+
+.mains { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 10px; }
+.main-joueur { border-radius:12px; padding:6px 8px 4px; border:2px solid transparent; min-width:96px; }
+.main-joueur.active { border-color:var(--accent-gold); background:rgba(240,194,70,.08); }
+.main-info { font-size:.82rem; font-weight:700; color:#fff; margin-top:6px; min-height:1.3em; }
+.main-info .res { display:inline-block; border-radius:50px; padding:1px 9px; margin-left:4px; font-size:.78rem; }
+.res.gagne { background:var(--accent-green); color:#052e16; }
+.res.perdu { background:var(--accent-red); color:#fff; }
+.res.egal { background:#cbd5e1; color:#0f172a; }
+.tapis.vide .zone { display:none; }
+.mains.serre .carte { width:46px; height:66px; font-size:1rem; margin-left:-20px; padding:4px 5px; }
+.mains.serre .carte .k-bas { font-size:1.25rem; }
+.mains.serre .cartes { min-height:66px; padding-left:20px; }
+.mains.serre .main-joueur { min-width:78px; padding:5px 4px 3px; }
+.bj-msg { text-align:center; font-family:'Outfit',sans-serif; font-weight:700; font-size:1.02rem; color:#fff; margin-top:12px; min-height:1.6em; }
+.bj-conseil { margin-top:10px; padding:10px 12px; border-radius:10px; background:rgba(0,0,0,.35); border-left:3px solid var(--accent-gold); color:var(--text-primary); font-size:.92rem; line-height:1.5; }
+.bj-conseil b { color:var(--accent-gold); }
+.jetons { display:flex; justify-content:center; gap:10px; margin-top:14px; }
+.jeton { appearance:none; cursor:pointer; width:62px; height:62px; border-radius:50%; border:4px dashed rgba(255,255,255,.85); font-family:'Outfit',sans-serif; font-weight:800; font-size:1.05rem; color:#fff; box-shadow:0 3px 10px rgba(0,0,0,.4); touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.jeton:active { transform:scale(.94); }
+.jeton:disabled { opacity:.3; cursor:not-allowed; }
+.j10 { background:#2563eb; } .j50 { background:#dc2626; } .j100 { background:#111827; } .j500 { background:#7c3aed; }
+.grille-2 { display:grid; grid-template-columns:1fr 1.4fr; gap:10px; margin-top:14px; }
+.jeu-btn.large { width:100%; margin-top:10px; }
+.bilan { margin:12px -8px 0; padding:14px 16px; border-radius:14px; background:var(--bg-card); border:1px solid rgba(255,255,255,.08); font-size:.93rem; color:var(--text-secondary); line-height:1.55; }
+.bilan.ok { border-color:rgba(34,197,94,.5); }
+.bilan.ko { border-color:rgba(239,68,68,.5); }
+.bilan strong { color:var(--text-primary); }
+.bilan ul { margin:8px 0 0; padding-left:18px; }
+.bilan li { margin-bottom:6px; line-height:1.5; }
+.bj-stats { text-align:center; font-size:.85rem; color:var(--text-muted); margin:12px 0 4px; }
+@media (min-width:700px) { .bilan { margin-left:0; margin-right:0; } .jeton { width:70px; height:70px; } }
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navigation principale">
+  <a href="/">Accueil</a>
+  <a href="/jeux/">Jeux</a>
+  <a href="/blog/">Blog</a>
+  <a href="/bonus/">Bonus</a>
+</nav>
+
+<main class="page">
+<div class="breadcrumb"><a href="/">Accueil</a> › <a href="/jeux/">Jeux</a> › <span aria-current="page">Blackjack gratuit</span></div>
+<h1>Blackjack gratuit : joue en ligne sans argent</h1>
+<p class="intro">Jetons fictifs, aucune mise réelle, aucune inscription.</p>
+
+<div class="tapis vide" id="bj" data-phase="mise">
+  <div class="tapis-barre">
+    <span>Jetons : <b id="jetons">1 000</b></span>
+    <span>Mise : <b id="mise">50</b></span>
+  </div>
+  <div class="zone">
+    <div class="zone-titre">Croupier <b id="totalCroupier" hidden></b></div>
+    <div class="cartes" id="cartesCroupier"></div>
+  </div>
+  <div class="zone">
+    <div class="zone-titre">Ta main</div>
+    <div class="mains" id="mains"><div class="main-joueur"><div class="cartes"></div></div></div>
+  </div>
+  <div class="bj-msg" id="msg" role="status" aria-live="polite">Choisis ta mise, puis distribue.</div>
+  <div class="bj-conseil" id="conseil" aria-live="polite" hidden></div>
+
+  <div id="zoneMise">
+    <div class="jetons">
+      <button type="button" class="jeton j10" data-v="10" aria-label="Ajouter 10 à la mise">10</button>
+      <button type="button" class="jeton j50" data-v="50" aria-label="Ajouter 50 à la mise">50</button>
+      <button type="button" class="jeton j100" data-v="100" aria-label="Ajouter 100 à la mise">100</button>
+      <button type="button" class="jeton j500" data-v="500" aria-label="Ajouter 500 à la mise">500</button>
+    </div>
+    <div class="grille-2">
+      <button type="button" class="jeu-btn b-neutre" id="effacer">Effacer la mise</button>
+      <button type="button" class="jeu-btn b-or" id="distribuer">Distribuer</button>
+    </div>
+    <button type="button" class="jeu-btn b-neutre large" id="recharger" hidden>Recharger 1 000 jetons (gratuit)</button>
+  </div>
+
+  <div id="zoneJeu" hidden>
+    <div class="grille-4">
+      <button type="button" class="jeu-btn b-tirer" id="tirer">Tirer</button>
+      <button type="button" class="jeu-btn b-rester" id="rester">Rester</button>
+      <button type="button" class="jeu-btn b-doubler" id="doubler">Doubler</button>
+      <button type="button" class="jeu-btn b-partager" id="partager">Partager</button>
+    </div>
+    <button type="button" class="jeu-btn b-neutre large" id="btnConseil">💡 Conseil</button>
+  </div>
+</div>
+
+<div class="bilan" id="bilan" hidden></div>
+<div class="bj-stats" id="stats">Mains jouées : 0 · Coups conformes à la stratégie : —</div>
+
+<div class="inline-cta rappel" id="rappel" hidden>
+  <h2>Prêt à jouer pour de vrai ?</h2>
+  <p>Bonus 100 % + 200 free spins sur ton premier dépôt. Ici tu t'entraînes sans risque ; en argent réel, tu peux perdre ta mise.</p>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" data-cta="jeux-blackjack-rappel">Récupère ton bonus ici →</a>
+  <p class="legal">18+ · Jouer comporte des risques · Conditions sur le site du casino</p>
+</div>
+
+<div class="inline-cta">
+  <p>Bonus 100 % + 200 free spins sur ton premier dépôt : dépose 100 €, joue avec 200 €.</p>
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" data-cta="jeux-blackjack-inline">Récupère ton bonus ici →</a>
+  <p class="legal">18+ · Jouer comporte des risques · Conditions sur le site du casino</p>
+</div>
+
+<h2>Comment jouer à ce blackjack gratuit</h2>
+<p>Tu démarres avec 1 000 jetons fictifs : ils n'ont aucune valeur, il n'y a rien à déposer et rien à gagner. Compose ta mise avec les jetons, appuie sur « Distribuer », puis joue ta main :</p>
+<ul>
+  <li><strong>Tirer</strong> : tu prends une carte de plus.</li>
+  <li><strong>Rester</strong> : tu gardes ton total et le croupier joue.</li>
+  <li><strong>Doubler</strong> : tu doubles ta mise et tu reçois une seule carte.</li>
+  <li><strong>Partager</strong> : tu sépares une paire en deux mains, chacune avec sa mise.</li>
+</ul>
+
+<h2>Les règles de cette table</h2>
+<ul>
+  <li>Sabot de 6 jeux de 52 cartes, remélangé quand il reste environ un quart des cartes.</li>
+  <li>Le croupier tire jusqu'à 16 et reste sur tout 17, y compris le 17 souple.</li>
+  <li>Le blackjack (As + carte à 10 points dès la donne) est payé 3:2.</li>
+  <li>Tu peux doubler sur tes deux premières cartes, y compris après un partage.</li>
+  <li>Partage jusqu'à 4 mains ; les As partagés reçoivent une seule carte chacun.</li>
+  <li>Pas d'assurance ni d'abandon.</li>
+</ul>
+
+<h2>Apprends la stratégie de base en jouant</h2>
+<p>Le bouton « Conseil » affiche le coup de la stratégie de base pour ta main face à la carte du croupier, avec une explication courte. Après chaque main, le jeu t'indique si tes décisions suivaient cette stratégie et te montre celles qui s'en écartaient.</p>
+<p>Bien appliquée, la stratégie de base ramène l'avantage du casino à environ 0,5 % selon les règles : elle réduit tes pertes moyennes, elle ne garantit jamais de gagner. Pour la mémoriser plus vite, garde le <a href="/">tableau de stratégie</a> sous les yeux, puis passe à l'<a href="/jeux/entrainement-strategie/">entraînement éclair</a> et au <a href="/jeux/quiz-blackjack/">quiz blackjack</a>.</p>
+</main>
+
+<footer>
+  <p>© 2026 <a href="/">Tuto Blackjack</a> — Joue responsablement. 18+</p>
+  <p style="margin-top:8px;">Ce site a un but éducatif. Les jeux d'argent comportent des risques.</p>
+</footer>
+
+<div class="sticky-cta visible" id="stickyCta">
+  <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" data-cta="jeux-blackjack-sticky">Récupère ton bonus ici →</a>
+  <div class="live-text">Bonus 100 % + 200 free spins · 18+ · Conditions sur le site du casino</div>
+</div>
+<script src="/jeux/strategie.js"></script>
+<script>
+(function () {
+  'use strict';
+  var S = window.BJStrategy;
+  var DELAI = typeof window.BJ_DELAI === 'number' ? window.BJ_DELAI : 550;
+  var COULEURS = ['♠', '♥', '♦', '♣'];
+  var RANGS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  var NB_JEUX = 6, SEUIL_MELANGE = 78, MISE_MIN = 10, MAX_MAINS = 4, DEPART = 1000;
+  var VERBE = { T: 'Tirer', R: 'Rester', D: 'Doubler', P: 'Partager' };
+
+  function $(id) { return document.getElementById(id); }
+  function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+
+  // Entier uniforme dans [0, n) — sans biais de modulo.
+  function hasard(n) {
+    if (window.crypto && window.crypto.getRandomValues) {
+      var limite = Math.floor(4294967296 / n) * n, b = new Uint32Array(1);
+      do { window.crypto.getRandomValues(b); } while (b[0] >= limite);
+      return b[0] % n;
+    }
+    return Math.floor(Math.random() * n);
+  }
+
+  // Sabot de 6 jeux, mélange de Fisher-Yates.
+  function nouveauSabot() {
+    var s = [], j, c, r, i, k, t;
+    for (j = 0; j < NB_JEUX; j++)
+      for (c = 0; c < 4; c++)
+        for (r = 0; r < 13; r++) s.push({ rang: RANGS[r], coul: COULEURS[c] });
+    for (i = s.length - 1; i > 0; i--) {
+      k = hasard(i + 1);
+      t = s[i]; s[i] = s[k]; s[k] = t;
+    }
+    return s;
+  }
+
+  var E = {
+    sabot: nouveauSabot(), jetons: DEPART, mise: 50, phase: 'mise',
+    mains: [], active: 0, croupier: [], cache: true, journal: [],
+    stats: { mains: 0, coups: 0, bons: 0 }, message: 'Choisis ta mise, puis distribue.'
+  };
+
+  function piocher() {
+    if (E.sabot.length === 0) E.sabot = nouveauSabot();
+    return E.sabot.pop();
+  }
+  function tot(cartes) { return S.total(cartes); }
+
+  function options(m) {
+    var deux = m.cartes.length === 2 && !m.asPartages;
+    return {
+      doubler: deux && E.jetons >= m.mise,
+      partager: deux && S.valeur(m.cartes[0]) === S.valeur(m.cartes[1]) && E.mains.length < MAX_MAINS && E.jetons >= m.mise
+    };
+  }
+
+  // Sur petit écran, remonte la table pour que les boutons restent visibles au-dessus de la barre fixe.
+  function cadrer() {
+    var r = $('bj').getBoundingClientRect();
+    if (r.bottom > window.innerHeight - 110 || r.top < 0) window.scrollBy(0, r.top - 8);
+  }
+
+  // ---------- Déroulement ----------
+  function distribuer() {
+    if (E.phase !== 'mise' || E.mise < MISE_MIN || E.mise > E.jetons) return;
+    var melange = false;
+    if (E.sabot.length < SEUIL_MELANGE) { E.sabot = nouveauSabot(); melange = true; }
+    E.jetons -= E.mise;
+    var m = { cartes: [], mise: E.mise, fini: false };
+    E.mains = [m]; E.active = 0; E.croupier = []; E.cache = true; E.journal = [];
+    m.cartes.push(piocher()); E.croupier.push(piocher());
+    m.cartes.push(piocher()); E.croupier.push(piocher());
+    E.phase = 'jeu';
+    $('bilan').hidden = true;
+    masquerConseil();
+    var bjJoueur = tot(m.cartes).total === 21, bjCroupier = tot(E.croupier).total === 21;
+    if (bjJoueur || bjCroupier) {
+      m.blackjack = bjJoueur; m.fini = true;
+      E.cache = false;
+      regler();
+      cadrer();
+      return;
+    }
+    E.message = melange ? 'Sabot remélangé. À toi de jouer.' : 'À toi de jouer.';
+    afficher();
+    cadrer();
+  }
+
+  function jouer(code) {
+    if (E.phase !== 'jeu') return;
+    var m = E.mains[E.active], o = options(m);
+    if ((code === 'D' && !o.doubler) || (code === 'P' && !o.partager)) return;
+    var c = S.conseil(m.cartes, E.croupier[0], { peutDoubler: o.doubler, peutPartager: o.partager });
+    E.journal.push({ main: c.main, croupier: S.nomCroupier(E.croupier[0]), joue: code, attendu: c.code, ok: code === c.code });
+    masquerConseil();
+
+    if (code === 'T') {
+      m.cartes.push(piocher());
+      var t = tot(m.cartes).total;
+      if (t > 21) { m.saute = true; m.fini = true; }
+      else if (t === 21) m.fini = true;
+    } else if (code === 'R') {
+      m.fini = true;
+    } else if (code === 'D') {
+      E.jetons -= m.mise; m.mise *= 2; m.double = true;
+      m.cartes.push(piocher());
+      if (tot(m.cartes).total > 21) m.saute = true;
+      m.fini = true;
+    } else if (code === 'P') {
+      E.jetons -= m.mise;
+      var seconde = m.cartes.pop();
+      var as = S.valeur(seconde) === 11;
+      var n = { cartes: [seconde], mise: m.mise, fini: as, partagee: true, asPartages: as };
+      m.partagee = true; m.asPartages = as; m.fini = as;
+      m.cartes.push(piocher());
+      n.cartes.push(piocher());
+      E.mains.splice(E.active + 1, 0, n);
+    }
+    avancer();
+  }
+
+  function avancer() {
+    while (E.active < E.mains.length) {
+      var m = E.mains[E.active];
+      if (!m.fini && tot(m.cartes).total === 21) m.fini = true;
+      if (!m.fini) break;
+      E.active++;
+    }
+    if (E.active >= E.mains.length) {
+      E.active = -1;
+      var enVie = E.mains.some(function (m) { return !m.saute; });
+      E.cache = false;
+      if (enVie) { E.phase = 'croupier'; E.message = 'Le croupier joue…'; afficher(); setTimeout(tourCroupier, DELAI); }
+      else regler();
+    } else {
+      E.message = E.mains.length > 1 ? 'Main ' + (E.active + 1) + ' : à toi de jouer.' : 'À toi de jouer.';
+      afficher();
+    }
+  }
+
+  // Le croupier tire jusqu'à 16 et reste sur tout 17 (y compris 17 souple).
+  function tourCroupier() {
+    if (tot(E.croupier).total < 17) {
+      E.croupier.push(piocher());
+      afficher();
+      setTimeout(tourCroupier, DELAI);
+    } else regler();
+  }
+
+  function regler() {
+    var tc = tot(E.croupier).total, bjCroupier = tc === 21 && E.croupier.length === 2, net = 0;
+    E.mains.forEach(function (m) {
+      var tj = tot(m.cartes).total, retour;
+      if (m.blackjack) {
+        if (bjCroupier) { retour = m.mise; m.resultat = 'egal'; m.texte = 'Égalité'; }
+        else { retour = m.mise * 2.5; m.resultat = 'gagne'; m.texte = 'Blackjack !'; }
+      } else if (m.saute) { retour = 0; m.resultat = 'perdu'; m.texte = 'Sauté'; }
+      else if (bjCroupier) { retour = 0; m.resultat = 'perdu'; m.texte = 'Perdu'; }
+      else if (tc > 21 || tj > tc) { retour = m.mise * 2; m.resultat = 'gagne'; m.texte = 'Gagné'; }
+      else if (tj === tc) { retour = m.mise; m.resultat = 'egal'; m.texte = 'Égalité'; }
+      else { retour = 0; m.resultat = 'perdu'; m.texte = 'Perdu'; }
+      m.net = retour - m.mise;
+      E.jetons += retour;
+      net += m.net;
+    });
+    E.dernierNet = net;
+    E.phase = 'mise'; E.active = -1; E.cache = false;
+    E.stats.mains++;
+    E.journal.forEach(function (j) { E.stats.coups++; if (j.ok) E.stats.bons++; });
+
+    var debut;
+    if (bjCroupier && !E.mains[0].blackjack) debut = 'Blackjack du croupier.';
+    else if (E.mains[0].blackjack && !bjCroupier) debut = 'Blackjack ! Payé 3:2.';
+    else if (tc > 21) debut = 'Le croupier saute (' + tc + ').';
+    else if (E.mains.length === 1) debut = E.mains[0].texte + (E.mains[0].saute ? ' (' + tot(E.mains[0].cartes).total + ').' : ' : ' + tot(E.mains[0].cartes).total + ' contre ' + tc + '.');
+    else debut = 'Croupier : ' + tc + '.';
+    E.message = debut + ' ' + (net > 0 ? '+' + fmt(net) + ' jetons' : net < 0 ? '−' + fmt(-net) + ' jetons' : 'Mise rendue');
+
+    if (E.mise > E.jetons) E.mise = Math.floor(E.jetons / MISE_MIN) * MISE_MIN;
+    bilan();
+    $('rappel').hidden = false;
+    afficher();
+  }
+
+  function bilan() {
+    var b = $('bilan'), erreurs = E.journal.filter(function (j) { return !j.ok; }), n = E.journal.length, h;
+    if (n === 0) {
+      b.className = 'bilan';
+      h = '<strong>Stratégie de base :</strong> aucune décision à prendre sur cette main.';
+    } else if (erreurs.length === 0) {
+      b.className = 'bilan ok';
+      h = '<strong>✔ Stratégie de base respectée.</strong> ' + (n === 1 ? 'Ton coup suivait' : 'Tes ' + n + ' coups suivaient') + ' le tableau.';
+    } else {
+      b.className = 'bilan ko';
+      h = '<strong>✘ ' + erreurs.length + (erreurs.length === 1 ? ' coup s\'écartait' : ' coups s\'écartaient') + ' de la stratégie de base</strong> (sur ' + n + ').<ul>';
+      erreurs.forEach(function (j) {
+        h += '<li>' + j.main + ' contre ' + j.croupier + ' : tu as choisi <strong>' + VERBE[j.joue] + '</strong>, le tableau dit <strong>' + VERBE[j.attendu] + '</strong>.</li>';
+      });
+      h += '</ul>';
+    }
+    b.innerHTML = h;
+    b.hidden = false;
+  }
+
+  function masquerConseil() { $('conseil').hidden = true; }
+  function montrerConseil() {
+    if (E.phase !== 'jeu') return;
+    var m = E.mains[E.active], o = options(m);
+    var c = S.conseil(m.cartes, E.croupier[0], { peutDoubler: o.doubler, peutPartager: o.partager });
+    var el = $('conseil');
+    el.textContent = '';
+    var b = document.createElement('b');
+    b.textContent = 'Conseil : ' + c.libelle + '. ';
+    el.appendChild(b);
+    el.appendChild(document.createTextNode(c.explication));
+    el.hidden = false;
+  }
+
+  // ---------- Affichage ----------
+  function carteEl(c, dos) {
+    var d = document.createElement('div');
+    if (dos) { d.className = 'carte dos'; d.setAttribute('aria-label', 'Carte cachée'); return d; }
+    d.className = 'carte' + (c.coul === '♥' || c.coul === '♦' ? ' rouge' : '');
+    d.setAttribute('aria-label', c.rang + ' ' + c.coul);
+    var h = document.createElement('span'); h.textContent = c.rang;
+    var b = document.createElement('span'); b.className = 'k-bas'; b.textContent = c.coul;
+    d.appendChild(h); d.appendChild(b);
+    return d;
+  }
+  function remplir(el, cartes, cacheSeconde, deja) {
+    el.textContent = '';
+    cartes.forEach(function (c, i) {
+      var n = carteEl(c, cacheSeconde && i === 1);
+      if (i < deja) n.style.animation = 'none';
+      el.appendChild(n);
+    });
+  }
+  var vus = { croupier: 0, mains: [] };
+
+  function afficher() {
+    var racine = $('bj');
+    racine.setAttribute('data-phase', E.phase);
+    racine.classList.toggle('vide', E.croupier.length === 0);
+    $('jetons').textContent = fmt(E.jetons);
+    $('mise').textContent = fmt(E.phase === 'mise' ? E.mise : E.mains.reduce(function (s, m) { return s + m.mise; }, 0));
+
+    // Croupier
+    remplir($('cartesCroupier'), E.croupier, E.cache, vus.croupier);
+    vus.croupier = E.cache ? 1 : E.croupier.length;
+    var tcEl = $('totalCroupier');
+    if (E.croupier.length) {
+      tcEl.hidden = false;
+      tcEl.textContent = E.cache ? S.valeur(E.croupier[0]) : tot(E.croupier).total;
+    } else tcEl.hidden = true;
+
+    // Joueur
+    var zone = $('mains');
+    zone.textContent = '';
+    zone.className = 'mains' + (E.mains.length > 2 ? ' serre' : '');
+    var liste = E.mains.length ? E.mains : [{ cartes: [] }];
+    liste.forEach(function (m, i) {
+      var bloc = document.createElement('div');
+      bloc.className = 'main-joueur' + (E.phase === 'jeu' && i === E.active && E.mains.length > 1 ? ' active' : '');
+      var cs = document.createElement('div'); cs.className = 'cartes';
+      remplir(cs, m.cartes, false, vus.mains[i] || 0);
+      bloc.appendChild(cs);
+      var info = document.createElement('div'); info.className = 'main-info';
+      if (m.cartes.length) {
+        var t = tot(m.cartes);
+        info.textContent = t.total + (t.souple && t.total < 21 ? ' souple' : '') + (E.mains.length > 1 || m.double ? ' · ' + fmt(m.mise) : '');
+        if (m.resultat) {
+          var r = document.createElement('span');
+          r.className = 'res ' + m.resultat; r.textContent = m.texte;
+          info.appendChild(r);
+        } else if (m.saute) {
+          var r2 = document.createElement('span');
+          r2.className = 'res perdu'; r2.textContent = 'Sauté';
+          info.appendChild(r2);
+        }
+      }
+      bloc.appendChild(info);
+      zone.appendChild(bloc);
+    });
+    vus.mains = E.mains.map(function (m) { return m.cartes.length; });
+
+    $('msg').textContent = E.message;
+
+    // Commandes
+    var enMise = E.phase === 'mise';
+    $('zoneMise').hidden = !enMise;
+    $('zoneJeu').hidden = enMise;
+    if (enMise) {
+      var ruine = E.jetons < MISE_MIN;
+      Array.prototype.forEach.call(document.querySelectorAll('.jeton'), function (j) {
+        j.disabled = E.mise + parseInt(j.getAttribute('data-v'), 10) > E.jetons;
+      });
+      $('distribuer').disabled = E.mise < MISE_MIN || E.mise > E.jetons;
+      $('distribuer').textContent = E.stats.mains ? 'Rejouer (mise ' + fmt(E.mise) + ')' : 'Distribuer';
+      if (E.mise < MISE_MIN) $('distribuer').textContent = 'Distribuer';
+      $('effacer').disabled = E.mise === 0;
+      $('recharger').hidden = !ruine;
+    } else {
+      var actif = E.phase === 'jeu', o = actif ? options(E.mains[E.active]) : { doubler: false, partager: false };
+      $('tirer').disabled = !actif; $('rester').disabled = !actif;
+      $('doubler').disabled = !o.doubler; $('partager').disabled = !o.partager;
+      $('btnConseil').disabled = !actif;
+    }
+    $('stats').textContent = 'Mains jouées : ' + E.stats.mains + ' · Coups conformes à la stratégie : ' +
+      (E.stats.coups ? E.stats.bons + '/' + E.stats.coups + ' (' + Math.round(100 * E.stats.bons / E.stats.coups) + ' %)' : '—');
+  }
+
+  // ---------- Événements ----------
+  Array.prototype.forEach.call(document.querySelectorAll('.jeton'), function (j) {
+    j.addEventListener('click', function () {
+      if (E.phase !== 'mise') return;
+      var v = parseInt(j.getAttribute('data-v'), 10);
+      if (E.mise + v <= E.jetons) { E.mise += v; afficher(); }
+    });
+  });
+  $('effacer').addEventListener('click', function () { if (E.phase === 'mise') { E.mise = 0; afficher(); } });
+  $('distribuer').addEventListener('click', distribuer);
+  $('recharger').addEventListener('click', function () {
+    if (E.phase !== 'mise' || E.jetons >= MISE_MIN) return;
+    E.jetons = DEPART; E.mise = 50; E.message = 'Jetons rechargés. Choisis ta mise.';
+    afficher();
+  });
+  $('tirer').addEventListener('click', function () { jouer('T'); });
+  $('rester').addEventListener('click', function () { jouer('R'); });
+  $('doubler').addEventListener('click', function () { jouer('D'); });
+  $('partager').addEventListener('click', function () { jouer('P'); });
+  $('btnConseil').addEventListener('click', montrerConseil);
+
+  // Lecture seule, pour les tests automatisés.
+  window.BJGame = {
+    etat: function () { return JSON.parse(JSON.stringify(E)); },
+    nouveauSabot: nouveauSabot
+  };
+
+  afficher();
+})();
+</script>
+</body>
+</html>
