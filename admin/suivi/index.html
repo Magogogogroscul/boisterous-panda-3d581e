@@ -41,7 +41,14 @@
   td { padding: 9px 8px; border-bottom: 1px solid rgba(255,255,255,.05); }
   td a { color: var(--accent-gold); }
   .empty { color: var(--text-muted); font-size: .92rem; margin-top: 10px; }
-  a:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 2px; }
+  .login { max-width: 420px; margin: 12vh auto 0; padding: 30px 24px; background: var(--bg-card); border: 1px solid rgba(240,194,70,.3); border-radius: 20px; text-align: center; }
+  .login h1 { font: 900 1.6rem 'Outfit', sans-serif; margin-bottom: 6px; }
+  .login p { color: var(--text-secondary); font-size: .93rem; margin-bottom: 18px; }
+  .login input { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); background: var(--bg-dark); color: var(--text-primary); font: 500 1rem 'DM Sans', sans-serif; margin-bottom: 12px; }
+  .login button { width: 100%; padding: 14px; border: 0; border-radius: 50px; background: var(--cta-gradient); color: #1a1a1a; font: 700 1rem 'Outfit', sans-serif; cursor: pointer; }
+  .login .lerr { color: #fecaca; margin: 12px 0 0; min-height: 1.2em; }
+  .out { font: 600 .85rem 'DM Sans', sans-serif; color: var(--text-secondary); background: none; border: 1px solid rgba(255,255,255,.12); border-radius: 50px; padding: 6px 12px; cursor: pointer; margin-left: 10px; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 2px; }
   @media (max-width: 720px) {
     .tiles { grid-template-columns: repeat(2, 1fr); }
     table, tbody, tr { display: block; }
@@ -57,8 +64,15 @@
 </style>
 </head>
 <body>
-<main class="sv">
-  <div class="sv-head"><h1>Suivi des <span>comptes</span></h1><p class="maj" id="maj">Chargement…</p></div>
+<form class="login" id="login" hidden>
+  <h1>Suivi des comptes</h1>
+  <p>Entre le mot de passe pour voir tes comptes.</p>
+  <input type="password" id="pw" autocomplete="current-password" aria-label="Mot de passe" required>
+  <button type="submit">Ouvrir</button>
+  <p class="lerr" id="lerr" role="alert"></p>
+</form>
+<main class="sv" id="main" hidden>
+  <div class="sv-head"><h1>Suivi des <span>comptes</span></h1><p class="maj"><span id="maj"></span><button class="out" id="out" type="button">Fermer</button></p></div>
   <div class="tiles" id="tiles"></div>
   <h2>Voix ElevenLabs</h2>
   <div class="box" id="voix"></div>
@@ -77,7 +91,23 @@ function etat(p, now) {
   if (p.statut === 'erreur') return ['bad', 'Erreur'];
   return new Date(p.quand) < now ? ['wait', 'Heure passée, à confirmer'] : ['', 'Programmé'];
 }
-fetch('data.json?' + Date.now()).then(r => r.json()).then(D => {
+const KEY = 'tbj_suivi_pw';
+const getPw = () => { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return ''; } };
+const setPw = v => { try { v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); } catch (e) {} };
+function ask(msg) { $('main').hidden = true; $('login').hidden = false; $('lerr').textContent = msg || ''; $('pw').focus(); }
+function load(pw) {
+  fetch('/api/suivi', { headers: { Authorization: 'Bearer ' + pw }, cache: 'no-store' }).then(r => {
+    if (r.status === 401) { setPw(''); throw { msg: 'Mot de passe incorrect.' }; }
+    if (r.status === 429) throw { msg: 'Trop d\'essais. Réessaie dans une minute.' };
+    if (!r.ok) throw { msg: 'Le suivi ne répond pas pour le moment. Réessaie dans un instant.' };
+    return r.json();
+  }).then(D => { setPw(pw); $('login').hidden = true; $('main').hidden = false; show(D); })
+    .catch(e => ask(e && e.msg ? e.msg : 'Connexion impossible. Vérifie ta connexion et réessaie.'));
+}
+$('login').addEventListener('submit', e => { e.preventDefault(); $('lerr').textContent = ''; load($('pw').value); });
+$('out').addEventListener('click', () => { setPw(''); $('pw').value = ''; ask(''); });
+getPw() ? load(getPw()) : ask('');
+function show(D) {
   const now = new Date(), posts = D.comptes.flatMap(c => c.posts);
   const pub = posts.filter(p => p.statut === 'publie').length;
   const venir = posts.filter(p => p.statut !== 'publie' && new Date(p.quand) >= now).length;
@@ -103,7 +133,7 @@ fetch('data.json?' + Date.now()).then(r => r.json()).then(D => {
       (rows ? `<table><tr><th>Date</th><th>Sujet</th><th>État</th><th></th></tr>${rows}</table>` : `<p class="empty">Aucune vidéo programmée pour l'instant.</p>`) + `</div>`;
   }).join('');
   $('taches').innerHTML = '<tr><th>Tâche</th><th>Quand</th><th>Ce qu\'elle fait</th></tr>' + D.taches.map(t => `<tr><td>${esc(t.nom)}</td><td>${esc(t.quand)}</td><td>${esc(t.role)}</td></tr>`).join('');
-}).catch(() => { $('maj').textContent = 'Données indisponibles pour le moment.'; });
+}
 </script>
 </body>
 </html>

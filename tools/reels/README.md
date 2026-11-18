@@ -91,7 +91,7 @@ au format validé par Alex et les programme dans Metricool. Ne change ni le form
     « 💬 Commente TUTO et je t'envoie le tableau complet de la stratégie de base, gratuitement. », la ligne
     « 18+ · Jouer comporte des risques. », puis 6 à 8 hashtags français (#blackjack #strategieblackjack #blackjackfr #casino #jeudecartes #tutoblackjack …).
     Vérifie ensuite avec `getScheduledPosts` que chaque Reel apparaît bien au bon créneau.
-11 bis. **Mettre à jour la page de suivi** `admin/suivi/data.json` (elle alimente tutoblackjack.com/admin/suivi/), puis commit et push :
+11 bis. **Mettre à jour la page de suivi** `netlify/data/suivi.json` (elle alimente tutoblackjack.com/admin/suivi/), puis commit et push :
     - `maj` : date et heure de Paris au format ISO ;
     - `voix` : `utilises`, `limite` et `reset` (date AAAA-MM-JJ) lus avec `account_get_usage` (ElevenLabs) ;
     - `comptes[].posts` du compte concerné : une entrée par Reel renvoyé par `getScheduledPosts` depuis 30 jours
