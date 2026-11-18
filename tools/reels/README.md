@@ -83,6 +83,9 @@ au format validé par Alex et les programme dans Metricool. Ne change ni le form
 10. **Héberger.** Copie le `.mp4` dans `reels/` à la racine du dépôt (pas la planche ni la couverture), supprime de `reels/` les `.mp4` et `.jpg`
     de plus de 10 jours, ajoute chaque Reel à `tools/reels/published.json` (`id`, `date`, `heure`, `fichier`), puis commit et push sur `main`.
     Attends le déploiement Netlify (1 à 2 minutes) et vérifie avec `curl -I https://tutoblackjack.com/reels/<fichier>.mp4` que la réponse est 200.
+    Si la réponse n'est toujours pas 200 après 4 minutes, le déploiement Netlify est en retard ou bloqué : utilise alors comme adresse du média
+    `https://raw.githubusercontent.com/Magogogogroscul/boisterous-panda-3d581e/main/reels/<fichier>.mp4` (le dépôt est public, Metricool recopie le fichier)
+    et signale le blocage Netlify dans le compte rendu.
 11. **Programmer.** `createScheduledPost` (Metricool), un appel par Reel :
     `blogId` 6734454, date et `publicationDate` au créneau choisi (fuseau `Europe/Paris`), `providers` `[{"network":"instagram"}]`,
     `media` `["https://tutoblackjack.com/reels/<fichier>.mp4"]`, `autoPublish` true, `draft` false,
