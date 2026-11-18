@@ -1,0 +1,10 @@
+{
+  "name": "tutoblackjack",
+  "private": true,
+  "scripts": {
+    "test": "node --test --experimental-test-module-mocks tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9"
+  }
+}
