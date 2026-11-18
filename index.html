@@ -531,25 +531,15 @@ footer { padding: 46px 20px; line-height: 1.7; }
     <div class="floating-card">🂱</div>
   </div>
   <div class="hero-content">
-    <div class="hero-stat">🎁 Offre de bienvenue : <strong>100 % + 200 free spins</strong></div>
     <p class="hero-title">DOUBLE TON <span>PREMIER DÉPÔT</span></p>
     <p class="hero-offer">Dépose 100 €, joue avec <strong>200 €</strong></p>
     <div class="hero-cta-row">
       <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-hero" data-cta="hero">Récupère ton bonus ici →</a>
       <a href="#tableau" class="cta-btn-secondary">Voir le tableau ↓</a>
     </div>
-    <ul class="hero-perks"><li><strong>100 %</strong> sur ton premier dépôt</li><li><strong>200</strong> free spins</li><li>Tableau de stratégie <strong>gratuit</strong></li></ul>
     <p class="hero-legal">18+ · Offre soumise aux conditions du casino · Jouer comporte des risques</p>
   </div>
 </section>
-
-<!-- CHIFFRES CLÉS -->
-<div class="social-proof-bar">
-  <div class="proof-stat"><span class="num" data-target="0.5" data-suffix="%" data-decimal="true">0%</span><span class="label">Avantage maison</span></div>
-  <div class="proof-stat"><span class="num" data-target="3" data-suffix=" tableaux">0</span><span class="label">Dures, souples, paires</span></div>
-  <div class="proof-stat"><span class="num" data-target="5" data-suffix=" min">0 min</span><span class="label">Pour comprendre</span></div>
-  <div class="proof-stat"><span class="num" data-target="100" data-suffix="%">0%</span><span class="label">Gratuit</span></div>
-</div>
 
 <!-- STRATEGY TABLE -->
 <section class="table-section" id="tableau">
@@ -796,34 +786,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
     if (!isOpen) item.classList.add('open');
   });
 });
-
-// Counter animation
-function animateCounter(el) {
-  const target = parseFloat(el.dataset.target);
-  const suffix = el.dataset.suffix || '';
-  const isDecimal = el.dataset.decimal === 'true';
-  const duration = 1800;
-  const start = performance.now();
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = eased * target;
-    if (isDecimal) el.textContent = current.toFixed(1) + suffix;
-    else el.textContent = Math.floor(current).toLocaleString('fr-FR') + suffix;
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !e.target.dataset.animated) {
-      e.target.dataset.animated = 'true';
-      animateCounter(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.proof-stat .num').forEach(el => counterObserver.observe(el));
 
 // Sticky CTA
 const stickyCta = document.getElementById('stickyCta');
