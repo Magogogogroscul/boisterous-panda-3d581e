@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Blackjack — Apprends la Stratégie de Base & Joue en Ligne</title>
+<meta name="description" content="Maîtrise le blackjack avec notre tableau de stratégie de base complet. Apprends les règles, les astuces et joue comme un pro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #0b1120;
+  --bg-card: #131b2e;
+  --bg-card-alt: #1a2540;
+  --accent-gold: #f0c246;
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --cta-gradient: linear-gradient(135deg, #f0c246 0%, #e8a912 100%);
+  --discord-purple: #5865F2;
+  --tbl-tirer: #4caf50;
+  --tbl-doubler: #fdd835;
+  --tbl-rester: #e53935;
+  --tbl-partager: #fb8c00;
+  --tbl-assurance: #ab47bc;
+  --tbl-header: #1565c0;
+  --tbl-row-label: #1a237e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== TELEGRAM BAR ===== */
+.telegram-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--discord-purple);
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 2px 20px rgba(88,101,242,0.4);
+}
+.telegram-bar a {
+  color: #fff; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 18px; border-radius: 50px;
+  transition: background 0.3s;
+}
+.telegram-bar a:hover { background: rgba(255,255,255,0.25); }
+.telegram-bar svg { width: 18px; height: 18px; fill: #fff; }
+
+/* ===== HERO ===== */
+.hero {
+  margin-top: 52px;
+  padding: 70px 20px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 20%, rgba(240,194,70,0.1) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 80%, rgba(21,101,192,0.08) 0%, transparent 50%);
+  min-height: 480px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hero-cards { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.floating-card {
+  position: absolute; font-size: 3.5rem; opacity: 0.12;
+  animation: floatCard 8s ease-in-out infinite;
+}
+.floating-card:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.floating-card:nth-child(2) { top: 60%; left: 8%; animation-delay: 1.5s; font-size: 2.8rem; }
+.floating-card:nth-child(3) { top: 15%; right: 6%; animation-delay: 3s; font-size: 4rem; }
+.floating-card:nth-child(4) { top: 65%; right: 10%; animation-delay: 0.8s; font-size: 2.5rem; }
+.floating-card:nth-child(5) { top: 35%; left: 15%; animation-delay: 4.5s; font-size: 2rem; }
+.floating-card:nth-child(6) { top: 40%; right: 18%; animation-delay: 2.2s; font-size: 2.3rem; }
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-18px) rotate(3deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+  75% { transform: translateY(-22px) rotate(1deg); }
+}
+.hero-content { position: relative; z-index: 2; }
+.hero h1 {
+  font-family: 'Outfit', sans-serif; font-weight: 900;
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  letter-spacing: -0.5px; line-height: 1.1;
+  color: #fff; text-transform: uppercase;
+  animation: fadeUp 0.7s ease forwards;
+}
+.hero h1 span { color: var(--accent-gold); }
+.hero-subtitle {
+  font-size: 1.15rem; color: var(--text-secondary);
+  max-width: 580px; margin: 16px auto 0;
+  animation: fadeUp 0.7s 0.15s ease both;
+}
+.hero-stat {
+  display: inline-block;
+  background: rgba(240,194,70,0.12);
+  border: 1px solid rgba(240,194,70,0.25);
+  border-radius: 50px; padding: 8px 24px;
+  margin-top: 20px; font-size: 0.95rem;
+  font-weight: 600; color: var(--accent-gold);
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.hero-stat strong { font-weight: 800; }
+.hero-cta-row {
+  margin-top: 28px;
+  display: flex; flex-wrap: wrap; gap: 14px;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+/* ===== SECTION COMMON ===== */
+section { padding: 50px 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.section-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  text-align: center; margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.section-title span { color: var(--accent-gold); }
+.section-sub {
+  text-align: center; color: var(--text-secondary);
+  max-width: 650px; margin: 0 auto 35px; font-size: 1rem;
+}
+
+/* ===== SOCIAL PROOF BAR ===== */
+.social-proof-bar {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;
+  padding: 30px 20px;
+  background: var(--bg-card);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.proof-stat { text-align: center; min-width: 120px; }
+.proof-stat .num {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.8rem; color: var(--accent-gold); display: block;
+}
+.proof-stat .label { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials { padding: 50px 20px; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px; max-width: 1000px; margin: 0 auto;
+}
+.testimonial-card {
+  background: var(--bg-card); border-radius: 14px;
+  padding: 24px; border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.testimonial-text {
+  font-size: 0.93rem; color: var(--text-secondary);
+  margin-bottom: 14px; font-style: italic; position: relative; z-index: 1;
+}
+.testimonial-author { display: flex; align-items: center; gap: 10px; }
+.testimonial-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-gold), #e8a912);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.85rem; color: #1a1a1a;
+}
+.testimonial-name { font-weight: 700; font-size: 0.88rem; }
+.testimonial-meta { font-size: 0.75rem; color: var(--text-muted); }
+.testimonial-stars { color: var(--accent-gold); font-size: 0.85rem; margin-bottom: 10px; }
+
+/* ===== STRATEGY TABLE ===== */
+.table-section { padding-top: 30px; }
+.table-wrapper {
+  background: var(--bg-card);
+  border-radius: 16px; padding: 28px 12px 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.table-block { margin-bottom: 28px; }
+.table-block:last-child { margin-bottom: 0; }
+.table-block-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.3rem; text-align: center;
+  margin-bottom: 8px; letter-spacing: 0.5px; color: var(--text-secondary);
+}
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -4px;
+  padding-bottom: 4px;
+}
+.strat-table { width: 100%; border-collapse: collapse; min-width: 440px; font-size: 14px; }
+.strat-table th, .strat-table td {
+  text-align: center; padding: 8px 0;
+  font-weight: 700; font-size: 14px;
+  border: 1px solid rgba(0,0,0,0.18);
+  width: calc(100% / 11);
+}
+.strat-table thead th { background: var(--tbl-header); color: #fff; font-size: 14px; }
+.strat-table thead th:first-child { background: var(--tbl-row-label); }
+.strat-table tbody td:first-child {
+  background: var(--tbl-row-label); color: #fff;
+  font-weight: 700; text-align: center; white-space: nowrap;
+  position: sticky; left: 0; z-index: 2;
+}
+.strat-table thead th:first-child {
+  position: sticky; left: 0; z-index: 3;
+}
+.c-T { background: var(--tbl-tirer); color: #fff; }
+.c-D { background: var(--tbl-doubler); color: #333; }
+.c-R { background: var(--tbl-rester); color: #fff; }
+.c-P { background: var(--tbl-partager); color: #fff; }
+.c-A { background: var(--tbl-assurance); color: #fff; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px 24px; justify-content: center; margin-top: 18px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+.legend-dot {
+  width: 22px; height: 22px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 11px; color: #fff;
+}
+.legend-dot.ld-T { background: var(--tbl-tirer); }
+.legend-dot.ld-D { background: var(--tbl-doubler); color:#333; }
+.legend-dot.ld-R { background: var(--tbl-rester); }
+.legend-dot.ld-P { background: var(--tbl-partager); }
+.legend-dot.ld-A { background: var(--tbl-assurance); }
+
+/* ===== CTA ===== */
+.cta-block { text-align: center; padding: 45px 20px; }
+.cta-block h2 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 8px;
+}
+.cta-block p { color: var(--text-secondary); margin-bottom: 22px; font-size: 1rem; }
+.cta-btn {
+  display: inline-block; background: var(--cta-gradient); color: #1a1a1a;
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 1.1rem; letter-spacing: 0.5px;
+  padding: 16px 48px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 4px 25px rgba(240,194,70,0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative; overflow: hidden;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 35px rgba(240,194,70,0.5); }
+.cta-btn::after {
+  content: ''; position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: linear-gradient(transparent, rgba(255,255,255,0.15), transparent);
+  transform: rotate(45deg) translateY(-100%); transition: transform 0.6s;
+}
+.cta-btn:hover::after { transform: rotate(45deg) translateY(50%); }
+.cta-btn-secondary {
+  display: inline-block; background: transparent; color: var(--text-primary);
+  font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
+  padding: 14px 36px; border-radius: 50px; text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: border-color 0.3s, background 0.3s;
+}
+.cta-btn-secondary:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
+.cta-divider { width: 80px; height: 3px; margin: 0 auto; background: var(--accent-gold); border-radius: 2px; opacity: 0.4; }
+
+/* ===== TUTORIAL ===== */
+.tuto-section { background: var(--bg-card); }
+.tuto-card {
+  background: var(--bg-card-alt); border-radius: 14px;
+  padding: 30px 28px; margin-bottom: 24px;
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative; overflow: hidden;
+}
+.tuto-card::before {
+  content: attr(data-step); position: absolute; top: -18px; right: -8px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 6rem; color: rgba(240,194,70,0.06); line-height: 1; pointer-events: none;
+}
+.tuto-card h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 1.35rem; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.step-num {
+  background: var(--accent-gold); color: #1a1a1a;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.tuto-card p, .tuto-card ul { color: var(--text-secondary); font-size: 0.95rem; }
+.tuto-card ul { padding-left: 20px; margin-top: 8px; }
+.tuto-card li { margin-bottom: 6px; }
+.tuto-card strong { color: var(--text-primary); }
+
+/* Value cards */
+.value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 20px 0; }
+.val-card { background: var(--bg-dark); border-radius: 10px; padding: 14px 10px; text-align: center; border: 1px solid rgba(255,255,255,0.06); }
+.val-card .card-icon { font-size: 1.8rem; margin-bottom: 4px; }
+.val-card .card-label { font-size: 0.8rem; color: var(--text-muted); }
+.val-card .card-val { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--accent-gold); }
+
+/* Tips */
+.tip-box {
+  background: rgba(240,194,70,0.08); border-left: 3px solid var(--accent-gold);
+  border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 18px 0;
+  font-size: 0.92rem; color: var(--text-secondary);
+}
+.tip-box strong { color: var(--accent-gold); }
+
+/* FAQ */
+.faq-item {
+  background: var(--bg-card-alt); border-radius: 12px;
+  margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+}
+.faq-q {
+  padding: 18px 24px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  user-select: none; transition: background 0.2s;
+}
+.faq-q:hover { background: rgba(255,255,255,0.03); }
+.faq-q::after {
+  content: '+'; font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 1.5rem; color: var(--accent-gold); transition: transform 0.3s;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; padding: 0 24px;
+  color: var(--text-secondary); font-size: 0.93rem;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0 24px 18px; }
+
+/* ===== STICKY MOBILE CTA ===== */
+.sticky-cta {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: linear-gradient(to top, var(--bg-dark) 70%, transparent);
+  padding: 18px 20px 22px; text-align: center;
+  transform: translateY(100%); transition: transform 0.4s ease;
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta .cta-btn { width: 100%; max-width: 400px; padding: 15px 20px; font-size: 1rem; display: block; margin: 0 auto; }
+.sticky-cta .live-text {
+  font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.live-dot {
+  display: inline-block; width: 8px; height: 8px;
+  background: var(--accent-green); border-radius: 50%;
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@media (max-width: 768px) {
+  .sticky-cta { display: block; }
+  footer { padding-bottom: 110px; }
+}
+
+/* Footer */
+footer {
+  text-align: center; padding: 40px 20px;
+  color: var(--text-muted); font-size: 0.82rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+footer a { color: var(--accent-gold); text-decoration: none; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .strat-table { min-width: 380px; }
+  .strat-table th, .strat-table td { padding: 7px 0; font-size: 13px; }
+  .strat-table thead th { font-size: 13px; }
+  .table-wrapper { padding: 20px 8px 16px; border-radius: 12px; }
+  .table-block-title { font-size: 1.1rem; }
+  .table-scroll { margin: 0; }
+  .cta-btn { font-size: 1rem; padding: 14px 36px; }
+  .tuto-card { padding: 22px 18px; }
+  section { padding: 35px 14px; }
+  .hero { min-height: 420px; padding: 60px 16px 40px; }
+  .social-proof-bar { gap: 20px; }
+  .proof-stat .num { font-size: 1.5rem; }
+}
+@media (max-width: 400px) {
+  .strat-table { min-width: 340px; }
+  .strat-table th, .strat-table td { padding: 6px 0; font-size: 12px; }
+  .strat-table thead th { font-size: 12px; }
+  .table-wrapper { padding: 16px 4px 12px; }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 4px 25px rgba(240,194,70,0.35); }
+  50% { box-shadow: 0 4px 40px rgba(240,194,70,0.55); }
+}
+.cta-btn { animation: pulse-glow 2.5s ease-in-out infinite; }
+.cta-btn:hover { animation: none; }
+</style>
+</head>
+<body>
+
+<!-- DISCORD BAR -->
+<div class="telegram-bar">
+  <a href="https://taap.it/giveawaydiscord" id="discord-link" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    Rejoindre le Discord: 30€ offert
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-cards">
+    <div class="floating-card">🂡</div>
+    <div class="floating-card">🂫</div>
+    <div class="floating-card">🃁</div>
+    <div class="floating-card">🂾</div>
+    <div class="floating-card">🃞</div>
+    <div class="floating-card">🂱</div>
+  </div>
+  <div class="hero-content">
+    <h1>MASTER <span>BLACKJACK</span></h1>
+    <p class="hero-subtitle">Réduis l'avantage de la maison à <strong style="color:#fff;">0.5%</strong> grâce à la stratégie de base. Mémorise le tableau, applique-le, deviens redoutable.</p>
+    <div class="hero-stat">🔥 <strong>14 827</strong> joueurs utilisent déjà cette stratégie</div>
+    <div class="hero-cta-row">
+      <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-hero">JOUER EN LIGNE →</a>
+      <a href="#tableau" class="cta-btn-secondary">Voir le tableau ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="social-proof-bar">
+  <div class="proof-stat"><span class="num" data-target="14827">0</span><span class="label">Joueurs actifs</span></div>
+  <div class="proof-stat"><span class="num" data-target="0.5" data-suffix="%" data-decimal="true">0%</span><span class="label">Avantage maison</span></div>
+  <div class="proof-stat"><span class="num" data-target="5" data-suffix=" min">0 min</span><span class="label">Pour apprendre</span></div>
+  <div class="proof-stat"><span class="num" data-target="4.9" data-suffix="/5" data-decimal="true">0/5</span><span class="label">Note moyenne</span></div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Ils ont <span>amélioré</span> leur jeu</h2>
+    <p class="section-sub">Des joueurs comme toi qui ont appris la stratégie de base et ne jouent plus au hasard.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Avant je jouais au feeling et je perdais tout le temps. Depuis que j'utilise le tableau, mes sessions sont beaucoup plus longues et rentables.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">T</div><div><div class="testimonial-name">Thomas R.</div><div class="testimonial-meta">Joueur depuis 6 mois</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Le tuto m'a tout appris en une soirée. J'ai le tableau en bookmark et je le consulte à chaque session. Ça change tout.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-meta">Joueuse depuis 3 mois</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Je pensais que le blackjack c'était 100% chance. La stratégie de base prouve le contraire. Mes résultats parlent d'eux-mêmes.</p>
+        <div class="testimonial-author"><div class="testimonial-avatar">K</div><div><div class="testimonial-name">Kevin L.</div><div class="testimonial-meta">Joueur depuis 1 an</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY TABLE -->
+<section class="table-section" id="tableau">
+  <div class="container">
+    <h2 class="section-title">Tableau de <span>Stratégie</span> de Base</h2>
+    <p class="section-sub">Utilise ce tableau à chaque main. La colonne = carte visible du croupier. La ligne = ta main.</p>
+    <div class="table-wrapper">
+      <div class="table-block">
+        <div class="table-block-title">Mains Dures</div>
+        <div class="table-scroll">
+        <table class="strat-table">
+          <thead><tr><th>Joueur</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+          <tbody>
+            <tr><td>17+</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td></tr>
+            <tr><td>16</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>15</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>14</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>13</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>12</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>11</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td></tr>
+            <tr><td>10</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>9</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>8</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>7</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>6</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>5</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="table-block">
+        <div class="table-block-title">Paires (Split)</div>
+        <div class="table-scroll">
+        <table class="strat-table">
+          <thead><tr><th>Joueur</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+          <tbody>
+            <tr><td>A-A</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td></tr>
+            <tr><td>10-10</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td></tr>
+            <tr><td>9-9</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-R">R</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-R">R</td><td class="c-R">R</td></tr>
+            <tr><td>8-8</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td></tr>
+            <tr><td>7-7</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>6-6</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>5-5</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>4-4</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>3-3</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>2-2</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-P">P</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="table-block">
+        <div class="table-block-title">Mains Souples (avec As)</div>
+        <div class="table-scroll">
+        <table class="strat-table">
+          <thead><tr><th>Joueur</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>A</th></tr></thead>
+          <tbody>
+            <tr><td>A-10</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-A">A</td></tr>
+            <tr><td>A-9</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td></tr>
+            <tr><td>A-8</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-R">R</td></tr>
+            <tr><td>A-7</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-R">R</td><td class="c-R">R</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>A-6</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>A-5</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>A-4</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>A-3</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+            <tr><td>A-2</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-D">D</td><td class="c-D">D</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td><td class="c-T">T</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot ld-T">T</div> Tirer</div>
+        <div class="legend-item"><div class="legend-dot ld-D">D</div> Doubler</div>
+        <div class="legend-item"><div class="legend-dot ld-R">R</div> Rester</div>
+        <div class="legend-item"><div class="legend-dot ld-P">P</div> Partager</div>
+        <div class="legend-item"><div class="legend-dot ld-A">A</div> Assurance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 1 -->
+<div class="cta-block">
+  <h2>Tu connais maintenant la stratégie de base 🃏</h2>
+  <p>Mets tes connaissances en pratique et joue directement en ligne.</p>
+  <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-1">JOUER MAINTENANT →</a>
+</div>
+<div class="cta-divider"></div>
+
+<!-- TUTORIAL -->
+<section class="tuto-section">
+  <div class="container">
+    <h2 class="section-title">Comment jouer au <span>Blackjack</span> ?</h2>
+    <p class="section-sub">Le guide complet pour les débutants. Apprends les règles en 5 minutes.</p>
+    <div class="tuto-card" data-step="01">
+      <h3><span class="step-num">1</span> L'objectif du jeu</h3>
+      <p>Le but est simple : <strong>obtenir une main dont la valeur se rapproche le plus de 21</strong>, sans jamais dépasser ce nombre. Tu joues contre le croupier, pas contre les autres joueurs.</p>
+      <div class="tip-box"><strong>💡 Astuce :</strong> Un Blackjack naturel (As + carte de valeur 10) est la meilleure main possible et paie 3 contre 2.</div>
+    </div>
+    <div class="tuto-card" data-step="02">
+      <h3><span class="step-num">2</span> La valeur des cartes</h3>
+      <p>Chaque carte a une valeur précise :</p>
+      <div class="value-grid">
+        <div class="val-card"><div class="card-icon">🂢</div><div class="card-val">2 à 10</div><div class="card-label">Valeur faciale</div></div>
+        <div class="val-card"><div class="card-icon">🂫</div><div class="card-val">10</div><div class="card-label">Valet, Dame, Roi</div></div>
+        <div class="val-card"><div class="card-icon">🂡</div><div class="card-val">1 ou 11</div><div class="card-label">As (flexible)</div></div>
+      </div>
+      <p>L'As est la carte la plus puissante : il vaut <strong>11</strong> sauf si ça te fait dépasser 21, auquel cas il vaut <strong>1</strong>.</p>
+    </div>
+    <div class="tuto-card" data-step="03">
+      <h3><span class="step-num">3</span> Le déroulement d'une partie</h3>
+      <p>Voici comment se passe une main :</p>
+      <ul>
+        <li>Tu places ta <strong>mise</strong> avant la distribution.</li>
+        <li>Tu reçois <strong>2 cartes</strong> face visible.</li>
+        <li>Le croupier reçoit <strong>1 carte visible</strong> et 1 carte cachée.</li>
+        <li>C'est à toi de jouer : tu choisis ton action.</li>
+        <li>Ensuite le croupier révèle sa carte et joue selon des règles fixes.</li>
+      </ul>
+    </div>
+    <div class="tuto-card" data-step="04">
+      <h3><span class="step-num">4</span> Les actions possibles</h3>
+      <p>À chaque tour, tu as plusieurs options :</p>
+      <ul>
+        <li><strong>Tirer (T)</strong> — Demander une carte supplémentaire.</li>
+        <li><strong>Rester (R)</strong> — Garder ta main actuelle.</li>
+        <li><strong>Doubler (D)</strong> — Doubler ta mise et recevoir exactement une carte de plus.</li>
+        <li><strong>Partager (P)</strong> — Si tu as une paire, séparer en deux mains indépendantes.</li>
+        <li><strong>Assurance (A)</strong> — Pari secondaire quand le croupier montre un As.</li>
+      </ul>
+      <div class="tip-box"><strong>💡 Astuce :</strong> Doubler est ton meilleur ami quand tu as 11 et que le croupier montre une carte faible (2 à 6). C'est là que tu maximises tes gains.</div>
+    </div>
+    <div class="tuto-card" data-step="05">
+      <h3><span class="step-num">5</span> Les règles du croupier</h3>
+      <p>Le croupier ne prend aucune décision — il suit des règles automatiques :</p>
+      <ul>
+        <li>Il <strong>tire</strong> obligatoirement tant qu'il a 16 ou moins.</li>
+        <li>Il <strong>reste</strong> obligatoirement à 17 ou plus.</li>
+      </ul>
+      <p>C'est pour ça que la stratégie de base fonctionne : les règles du croupier sont prévisibles.</p>
+    </div>
+    <div class="tuto-card" data-step="06">
+      <h3><span class="step-num">6</span> Qui gagne ?</h3>
+      <p>Une fois que toi et le croupier avez terminé :</p>
+      <ul>
+        <li><strong>Tu dépasses 21 ?</strong> Tu perds immédiatement (« bust »).</li>
+        <li><strong>Le croupier dépasse 21 ?</strong> Tu gagnes.</li>
+        <li><strong>Ni l'un ni l'autre ?</strong> La main la plus proche de 21 l'emporte.</li>
+        <li><strong>Égalité ?</strong> C'est un « push », tu récupères ta mise.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 2 -->
+<div class="cta-block">
+  <h2>Prêt à tester tes nouvelles compétences ? 🎯</h2>
+  <p>Applique la stratégie de base en conditions réelles et prends l'avantage.</p>
+  <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-2">COMMENCER À JOUER →</a>
+</div>
+<div class="cta-divider"></div>
+
+<!-- 3 RULES -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Les <span>3 règles d'or</span> du Blackjack</h2>
+    <p class="section-sub">Retiens ces principes et tu auras déjà un avantage sur 90% des joueurs.</p>
+    <div class="tuto-card" data-step="🥇">
+      <h3>Règle n°1 : Toujours suivre le tableau</h3>
+      <p>Ne joue jamais « au feeling ». La stratégie de base est calculée mathématiquement pour <strong>minimiser l'avantage de la maison</strong>. Chaque écart au tableau te coûte de l'argent sur le long terme.</p>
+    </div>
+    <div class="tuto-card" data-step="🥈">
+      <h3>Règle n°2 : Toujours partager les As et les 8</h3>
+      <p>Deux As = deux chances de faire 21. Deux 8 = un vilain 16 (la pire main). <strong>Partage toujours</strong>, peu importe la carte du croupier.</p>
+    </div>
+    <div class="tuto-card" data-step="🥉">
+      <h3>Règle n°3 : Ne jamais prendre l'assurance</h3>
+      <p>L'assurance est un pari annexe avec un avantage maison élevé. Statistiquement, <strong>c'est toujours perdant à long terme</strong>. Ignore-la systématiquement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 3 -->
+<div class="cta-block">
+  <h2>Tu maîtrises les bases, il ne reste plus qu'à jouer 🔥</h2>
+  <p>Des milliers de joueurs utilisent déjà cette stratégie. À ton tour.</p>
+  <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-3">JOUER EN LIGNE MAINTENANT →</a>
+</div>
+<div class="cta-divider"></div>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Questions <span>Fréquentes</span></h2>
+    <p class="section-sub">Tout ce que tu dois savoir avant de te lancer.</p>
+    <div class="faq-item"><div class="faq-q">Est-ce que la stratégie de base garantit de gagner ?</div><div class="faq-a">Non, aucune stratégie ne garantit de gagner à chaque main. Mais la stratégie de base réduit l'avantage de la maison à environ 0.5%, ce qui te donne les meilleures chances possibles sur le long terme.</div></div>
+    <div class="faq-item"><div class="faq-q">Puis-je utiliser le tableau en jouant en ligne ?</div><div class="faq-a">Absolument ! En ligne, personne ne te voit. Tu peux garder le tableau ouvert à côté et le consulter à chaque main. C'est d'ailleurs le meilleur moyen de l'apprendre par cœur.</div></div>
+    <div class="faq-item"><div class="faq-q">C'est quoi la différence entre main dure et main souple ?</div><div class="faq-a">Une main souple contient un As compté comme 11 (ex : As+6 = 17 souple). Elle est « flexible » car l'As peut repasser à 1. Une main dure n'a pas d'As flexible (ex : 10+7 = 17 dur).</div></div>
+    <div class="faq-item"><div class="faq-q">Combien de temps faut-il pour mémoriser le tableau ?</div><div class="faq-a">En pratiquant 15-20 minutes par jour, tu peux le maîtriser en 1 à 2 semaines. Commence par les mains dures, puis les paires, puis les mains souples.</div></div>
+    <div class="faq-item"><div class="faq-q">Le blackjack en ligne est-il truqué ?</div><div class="faq-a">Les plateformes régulées utilisent des générateurs de nombres aléatoires certifiés. Tant que tu joues sur un site licencié, les résultats sont équitables et vérifiés par des auditeurs indépendants.</div></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="cta-block" style="padding-bottom: 60px;">
+  <h2>Arrête de perdre, commence à jouer intelligemment ♠️</h2>
+  <p>Rejoins les joueurs qui appliquent la stratégie et maximisent leurs sessions.</p>
+  <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-4">ACCÉDER AUX TABLES →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <a href="#">Master Blackjack</a> — Joue responsablement. 18+</p>
+  <p style="margin-top:8px;">Ce site a un but éducatif. Les jeux d'argent comportent des risques.</p>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="https://taap.it/dragonia" target="_blank" rel="noopener" class="cta-btn" id="cta-link-sticky">JOUER MAINTENANT →</a>
+  <div class="live-text"><span class="live-dot"></span> <span id="live-count">237</span> joueurs en ligne en ce moment</div>
+</div>
+
+<script>
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.tuto-card, .faq-item, .testimonial-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+
+// Counter animation
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const isDecimal = el.dataset.decimal === 'true';
+  const duration = 1800;
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * target;
+    if (isDecimal) el.textContent = current.toFixed(1) + suffix;
+    else el.textContent = Math.floor(current).toLocaleString('fr-FR') + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = 'true';
+      animateCounter(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.proof-stat .num').forEach(el => counterObserver.observe(el));
+
+// Sticky CTA
+const stickyCta = document.getElementById('stickyCta');
+const heroSection = document.querySelector('.hero');
+let stickyShown = false;
+window.addEventListener('scroll', () => {
+  const heroBottom = heroSection.getBoundingClientRect().bottom;
+  if (heroBottom < -100 && !stickyShown) { stickyCta.classList.add('visible'); stickyShown = true; }
+  else if (heroBottom > 0 && stickyShown) { stickyCta.classList.remove('visible'); stickyShown = false; }
+}, { passive: true });
+
+// Live counter fluctuation
+const liveCount = document.getElementById('live-count');
+let currentLive = 237;
+setInterval(() => {
+  currentLive += Math.floor(Math.random() * 7) - 3;
+  currentLive = Math.max(180, Math.min(350, currentLive));
+  liveCount.textContent = currentLive;
+}, 4000);
+</script>
+</body>
+</html>
