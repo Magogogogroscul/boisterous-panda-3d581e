@@ -413,15 +413,14 @@ footer a { color: var(--accent-gold); text-decoration: none; }
 .cta-btn { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: #fff; box-shadow: 0 4px 25px rgba(34,197,94,0.4); text-transform: uppercase; }
 .cta-btn:hover { box-shadow: 0 6px 35px rgba(34,197,94,0.55); }
 @keyframes pulse-glow { 0%,100% { box-shadow: 0 4px 25px rgba(34,197,94,0.35); } 50% { box-shadow: 0 4px 40px rgba(34,197,94,0.65); } }
-.bonus-card { max-width: 560px; margin: 0 auto 34px; padding: 26px 22px; border-radius: 20px; background: var(--bg-card); border: 1px solid rgba(34,197,94,0.45); box-shadow: 0 0 60px rgba(34,197,94,0.12); text-align: center; position: relative; z-index: 2; }
-.bonus-tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-green); border: 1px solid rgba(34,197,94,.5); border-radius: 50px; padding: 4px 12px; margin-bottom: 12px; }
-.bonus-title { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 6vw, 2.4rem); line-height: 1.1; color: #fff; }
-.bonus-title span { color: var(--accent-green); }
-.bonus-sub { margin: 10px 0 4px; font-size: 1.1rem; color: var(--text-primary); font-weight: 600; }
-.bonus-detail { color: var(--accent-gold); font-weight: 700; margin-bottom: 18px; }
-.bonus-legal { margin-top: 12px; font-size: .72rem; color: var(--text-muted); }
-.bonus-card .cta-btn { display: block; padding: 16px 18px; font-size: 1rem; white-space: nowrap; }
-.hero h1 { font-size: clamp(1.8rem, 6.5vw, 3.2rem); }
+.hero-content { width: 100%; max-width: 860px; margin: 0 auto; }
+.hero .hero-stat { margin: 0 0 18px; font-size: clamp(.8rem, 3.4vw, .95rem); padding: 8px 18px; }
+.hero-title { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: clamp(2.3rem, 6.5vw, 4.6rem); letter-spacing: -0.5px; line-height: 1.08; color: #fff; text-transform: uppercase; animation: fadeUp 0.7s ease forwards; }
+.hero-title span { color: var(--accent-gold); }
+.hero-offer { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.15rem, 3.2vw, 1.6rem); color: #fff; margin-top: 14px; }
+.hero-offer strong { color: var(--accent-green); }
+.hero-legal { margin-top: 16px; font-size: .75rem; color: var(--text-muted); }
+.table-section h1.section-title { font-size: clamp(1.7rem, 4.5vw, 2.4rem); }
 .gate { position: relative; }
 .gate.locked .table-wrapper { filter: blur(9px); pointer-events: none; user-select: none; max-height: 620px; overflow: hidden; }
 .gate-box { display: none; }
@@ -458,19 +457,14 @@ body { padding-bottom: 96px; }
     <div class="floating-card">🂱</div>
   </div>
   <div class="hero-content">
-    <div class="bonus-card">
-      <div class="bonus-tag">OFFRE DE BIENVENUE</div>
-      <div class="bonus-title">DOUBLE TON <span>PREMIER DÉPÔT</span></div>
-      <p class="bonus-sub">Dépose 100 €, joue avec 200 €</p>
-      <p class="bonus-detail">Bonus 100 % + 200 free spins</p>
-      <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-hero" data-cta="hero">Récupère ton bonus ici →</a>
-      <p class="bonus-legal">18+ · Offre soumise aux conditions du casino · Jouer comporte des risques</p>
-    </div>
-    <h1>TABLEAU <span>BLACKJACK</span> : LA STRATÉGIE DE BASE</h1>
-    <p class="hero-subtitle">Réduis l'avantage de la maison à environ <strong style="color:#fff;">0,5 %</strong> grâce à la stratégie de base. Débloque le tableau, applique-le à chaque main.</p>
+    <div class="hero-stat">🎁 Offre de bienvenue : <strong>100 % + 200 free spins</strong></div>
+    <p class="hero-title">DOUBLE TON <span>PREMIER DÉPÔT</span></p>
+    <p class="hero-offer">Dépose 100 €, joue avec <strong>200 €</strong></p>
     <div class="hero-cta-row">
-      <a href="#tableau" class="cta-btn-secondary">Débloquer le tableau ↓</a>
+      <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-hero" data-cta="hero">Récupère ton bonus ici →</a>
+      <a href="#tableau" class="cta-btn-secondary">Voir le tableau ↓</a>
     </div>
+    <p class="hero-legal">18+ · Offre soumise aux conditions du casino · Jouer comporte des risques</p>
   </div>
 </section>
 
@@ -485,8 +479,8 @@ body { padding-bottom: 96px; }
 <!-- STRATEGY TABLE -->
 <section class="table-section" id="tableau">
   <div class="container">
-    <h2 class="section-title">Tableau de <span>Stratégie</span> de Base</h2>
-    <p class="section-sub">Utilise ce tableau à chaque main. La colonne = carte visible du croupier. La ligne = ta main.</p>
+    <h1 class="section-title">Tableau <span>Blackjack</span> : la Stratégie de Base</h1>
+    <p class="section-sub">Réduis l'avantage de la maison à environ 0,5 %. La colonne = carte visible du croupier. La ligne = ta main.</p>
     <div class="gate locked" id="gate">
       <div class="gate-box">
         <h3>🔒 Débloque le tableau complet</h3>
@@ -678,7 +672,7 @@ body { padding-bottom: 96px; }
 <!-- CTA 3 -->
 <div class="cta-block">
   <h2>Tu maîtrises les bases, il ne reste plus qu'à jouer 🔥</h2>
-  <p>Des milliers de joueurs utilisent déjà cette stratégie. À ton tour.</p>
+  <p>Applique la stratégie de base à chaque main. À ton tour.</p>
   <a href="https://taap.it/blackjackbonus" target="_blank" rel="noopener sponsored" class="cta-btn" id="cta-link-3" data-cta="cta-link-3">Récupère ton bonus ici →</a>
 </div>
 <div class="cta-divider"></div>
