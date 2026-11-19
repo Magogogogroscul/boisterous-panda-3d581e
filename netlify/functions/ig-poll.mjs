@@ -1,4 +1,4 @@
-// Relevé périodique des commentaires Instagram (toutes les 2 minutes).
+// Relevé périodique des commentaires Instagram (toutes les minutes).
 // Meta n'envoie les commentaires par webhook qu'aux applications validées (accès avancé) ;
 // ce relevé lit donc lui-même les commentaires récents des comptes connectés et répond à ceux qui contiennent le mot-clé.
 import { env, lire, magasin, motCle, correspond, traiter, noter } from "../lib/ig-core.mjs";
@@ -40,4 +40,4 @@ export default async () => {
   return new Response("ok");
 };
 
-export const config = { schedule: "*/2 * * * *" };
+export const config = { schedule: "* * * * *" };
