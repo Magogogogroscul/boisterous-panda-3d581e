@@ -92,7 +92,7 @@ au format validé par Alex et les programme dans Metricool. Ne change ni le form
     `instagramData` `{"type":"REEL","showReelOnFeed":true,"isAiGenerated":false}`.
     Légende : une accroche en question sur la première ligne, deux phrases qui donnent la réponse et la raison, la ligne
     « 💬 Commente TUTO et je t'envoie le tableau complet de la stratégie de base, gratuitement. », la ligne
-    « 18+ · Jouer comporte des risques. », puis 6 à 8 hashtags français (#blackjack #strategieblackjack #blackjackfr #casino #jeudecartes #tutoblackjack …).
+    « 18+ · Jouer comporte des risques. ». **Aucun hashtag**, ni dans la légende ni en premier commentaire (demande d'Alex : Instagram restreint les vues quand il y en a).
     Vérifie ensuite avec `getScheduledPosts` que chaque Reel apparaît bien au bon créneau.
 11 bis. **Mettre à jour la page de suivi** `netlify/data/suivi.json` (elle alimente tutoblackjack.com/admin/suivi/), puis commit et push :
     - `maj` : date et heure de Paris au format ISO ;
