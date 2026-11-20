@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-18T23:05:00+01:00",
+ "maj": "2026-11-20T02:22:00+01:00",
  "voix": {
   "forfait": "starter",
-  "utilises": 11469,
+  "utilises": 14549,
   "limite": 40000,
   "reset": "2026-12-12",
   "usd_par_credit": 0.0002
@@ -28,17 +28,20 @@
     {
      "quand": "2026-11-19T10:00",
      "sujet": "Paire de 8 contre 10",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df6tsr4G2Hg/"
     },
     {
      "quand": "2026-11-19T12:30",
      "sujet": "11 contre 6",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df6-meXje2B/"
     },
     {
      "quand": "2026-11-19T18:00",
      "sujet": "As-7 contre 9",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df7lq5iHJOI/"
     },
     {
      "quand": "2026-11-20T10:00",
@@ -53,6 +56,36 @@
     {
      "quand": "2026-11-20T18:00",
      "sujet": "10 contre 9",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-21T10:00",
+     "sujet": "12 contre 2",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-21T12:30",
+     "sujet": "Paire de 9 contre 7",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-21T18:00",
+     "sujet": "As-6 contre 5",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T10:00",
+     "sujet": "16 contre 7",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T12:30",
+     "sujet": "Paire de 10 contre 6",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T18:00",
+     "sujet": "As-7 contre 3",
      "statut": "programme"
     }
    ]
@@ -71,17 +104,20 @@
     {
      "quand": "2026-11-19T11:15",
      "sujet": "L'assurance, le pire pari de la table",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df6197zCaK8/"
     },
     {
      "quand": "2026-11-19T16:00",
      "sujet": "Le seul avantage du casino",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df7XfE9CDnK/"
     },
     {
      "quand": "2026-11-19T20:30",
      "sujet": "Don Johnson : 15 millions pris à Atlantic City",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df71mvECAIv/"
     }
    ]
   }
