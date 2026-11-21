@@ -76,5 +76,23 @@
   "date": "2026-11-22",
   "heure": "18:00",
   "fichier": "reels/2026-11-22-1800-souple-as-7-contre-3.mp4"
+ },
+ {
+  "id": "dure-13-contre-2",
+  "date": "2026-11-23",
+  "heure": "10:00",
+  "fichier": "reels/2026-11-23-1000-dure-13-contre-2.mp4"
+ },
+ {
+  "id": "paire-5-contre-6",
+  "date": "2026-11-23",
+  "heure": "12:30",
+  "fichier": "reels/2026-11-23-1230-paire-5-contre-6.mp4"
+ },
+ {
+  "id": "souple-as-6-contre-7",
+  "date": "2026-11-23",
+  "heure": "18:00",
+  "fichier": "reels/2026-11-23-1800-souple-as-6-contre-7.mp4"
  }
 ]
