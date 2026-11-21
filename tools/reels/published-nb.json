@@ -22,5 +22,11 @@
   "date": "2026-11-21",
   "heure": "16:00",
   "type": "strategie"
+ },
+ {
+  "id": "quatre-soldats-aberdeen-strategie-de-base",
+  "date": "2026-11-21",
+  "heure": "20:30",
+  "type": "histoire"
  }
 ]
