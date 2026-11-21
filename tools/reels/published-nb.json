@@ -40,5 +40,11 @@
   "date": "2026-11-22",
   "heure": "16:00",
   "type": "strategie"
+ },
+ {
+  "id": "cervantes-veintiuna-origine",
+  "date": "2026-11-22",
+  "heure": "20:30",
+  "type": "histoire"
  }
 ]
