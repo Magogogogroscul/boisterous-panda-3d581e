@@ -28,5 +28,17 @@
   "date": "2026-11-21",
   "heure": "20:30",
   "type": "histoire"
+ },
+ {
+  "id": "carte-du-croupier-il-saute",
+  "date": "2026-11-22",
+  "heure": "11:15",
+  "type": "strategie"
+ },
+ {
+  "id": "paires-as-8-toujours-10-5-jamais",
+  "date": "2026-11-22",
+  "heure": "16:00",
+  "type": "strategie"
  }
 ]
