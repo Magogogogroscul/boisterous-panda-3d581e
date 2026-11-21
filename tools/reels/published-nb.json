@@ -16,5 +16,11 @@
   "date": "2026-11-19",
   "heure": "20:30",
   "type": "histoire"
+ },
+ {
+  "id": "blackjack-6-contre-5",
+  "date": "2026-11-21",
+  "heure": "16:00",
+  "type": "strategie"
  }
 ]
