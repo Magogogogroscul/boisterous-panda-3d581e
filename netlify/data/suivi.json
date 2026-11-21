@@ -1,10 +1,10 @@
 {
- "maj": "2026-11-20T02:22:00+01:00",
+ "maj": "2026-11-21T02:22:00+01:00",
  "voix": {
   "forfait": "starter",
-  "utilises": 14549,
-  "limite": 40000,
-  "reset": "2026-12-12",
+  "utilises": 3624,
+  "limite": 146451,
+  "reset": "2026-12-20",
   "usd_par_credit": 0.0002
  },
  "comptes": [
@@ -46,17 +46,20 @@
     {
      "quand": "2026-11-20T10:00",
      "sujet": "12 contre 4",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df9TDJ2FNrq/"
     },
     {
      "quand": "2026-11-20T12:30",
      "sujet": "Paire d'As contre 10",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df9jiZnkdZd/"
     },
     {
      "quand": "2026-11-20T18:00",
      "sujet": "10 contre 9",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df-KZCklmuo/"
     },
     {
      "quand": "2026-11-21T10:00",
@@ -86,6 +89,21 @@
     {
      "quand": "2026-11-22T18:00",
      "sujet": "As-7 contre 3",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T10:00",
+     "sujet": "13 contre 2",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T12:30",
+     "sujet": "Paire de 5 contre 6",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T18:00",
+     "sujet": "As-6 contre 7",
      "statut": "programme"
     }
    ]
