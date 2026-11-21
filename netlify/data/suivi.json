@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-21T02:22:00+01:00",
+ "maj": "2026-11-21T13:19:00+01:00",
  "voix": {
-  "forfait": "starter",
-  "utilises": 3624,
+  "forfait": "creator",
+  "utilises": 11743,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -117,7 +117,7 @@
     "16:00",
     "20:30"
    ],
-   "etat": "premières vidéos programmées",
+   "etat": "automatique",
    "posts": [
     {
      "quand": "2026-11-19T11:15",
@@ -136,6 +136,31 @@
      "sujet": "Don Johnson : 15 millions pris à Atlantic City",
      "statut": "publie",
      "lien": "https://www.instagram.com/reel/Df71mvECAIv/"
+    },
+    {
+     "quand": "2026-11-21T16:00",
+     "sujet": "Blackjack payé 6 contre 5",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-21T20:30",
+     "sujet": "Les quatre soldats qui ont calculé la stratégie de base",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T11:15",
+     "sujet": "La carte du croupier",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T16:00",
+     "sujet": "Les paires : toujours ou jamais",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-22T20:30",
+     "sujet": "Cervantes et la veintiuna",
+     "statut": "programme"
     }
    ]
   }
