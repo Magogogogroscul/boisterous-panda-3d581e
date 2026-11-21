@@ -1,0 +1,15 @@
+{"scenes":[
+{"t":0,"type":"mots","lignes":[{"t":"En 2011","p":1,"d":0},{"t":"15 millions","f":1,"d":1.5},{"t":"de dollars","d":2.1},{"t":"pris à 3 casinos d’Atlantic City","p":1,"d":2.75}]},
+{"t":4.4,"type":"mots","inv":true,"lignes":[{"t":"Au blackjack","d":0},{"t":"sans tricher","f":1,"d":0.95}]},
+{"t":6.2,"type":"mots","lignes":[{"t":"Il s’appelle","p":1,"d":0},{"t":"Don","d":0.45},{"t":"Johnson","f":1,"d":0.62}]},
+{"t":7.74,"type":"cartes","sur":"Il ne comptait pas les cartes","cartes":["?","?","?"]},
+{"t":8.98,"type":"mots","lignes":[{"t":"Son arme","p":1,"d":0},{"t":"la négociation","f":1,"d":0.55}]},
+{"t":10.88,"type":"mots","lignes":[{"t":"À l’époque","p":1,"d":0},{"t":"les casinos","d":0.55},{"t":"en crise","f":1,"d":1.0},{"t":"ils veulent attirer les gros joueurs","p":1,"d":1.85}]},
+{"t":14.24,"type":"mots","lignes":[{"t":"Alors il négocie","p":1,"d":0},{"t":"ses propres","d":0.75},{"t":"règles","f":1,"d":1.15}]},
+{"t":16.1,"type":"chiffre","sur":"Et surtout, une remise","a":20,"suf":" %","leg":"de ses pertes remboursées","ld":2.2},
+{"t":19.52,"type":"mots","inv":true,"lignes":[{"t":"Avec ça","p":1,"d":0},{"t":"l’avantage","d":0.45},{"t":"passe de","d":0.95},{"t":"son côté","f":1,"d":1.25}]},
+{"t":21.58,"type":"mots","lignes":[{"t":"Une nuit de 12 heures","p":1,"d":0.1},{"t":"au Tropicana","p":1,"d":1.5},{"t":"près de","p":1,"d":2.3},{"t":"6 millions","f":1,"d":2.6}]},
+{"t":25.42,"type":"mots","lignes":[{"t":"Résultat","max":240,"d":0},{"t":"un casino l’a","p":1,"d":0.76},{"t":"banni","f":1,"d":1.3},{"t":"de tous ses établissements","p":1,"d":1.9}]},
+{"t":28.48,"type":"mots","lignes":[{"t":"La leçon","p":1,"d":0},{"t":"les règles","d":1.25},{"t":"de la table","f":1,"d":1.7},{"t":"comptent autant que ta façon de jouer","p":1,"d":2.45}]},
+{"t":32.62,"type":"fin","t2":1.28}
+]}

@@ -1,0 +1,16 @@
+{"scenes":[
+{"t":0,"type":"mots","lignes":["L’assurance",{"t":"le pire pari","d":1.62},{"t":"de la table","f":1,"d":1.98}]},
+{"t":2.9,"type":"mots","lignes":[{"t":"Et pourtant","p":1,"d":0},{"t":"presque tout","d":0.5},{"t":"le monde","d":0.85},{"t":"la prend","f":1,"d":1.3}]},
+{"t":4.98,"type":"cartes","sur":"Le croupier montre un as","cartes":["A♠","?"]},
+{"t":6.26,"type":"jetons","sur":"On te propose d’assurer ta main","items":[{"v":"10 €","l":"ta mise","d":0.05},{"v":"5 €","l":"l’assurance","sz":260,"d":1.45}],"leg":"pour la moitié de ta mise"},
+{"t":8.92,"type":"mots","lignes":[{"t":"S’il a un blackjack","p":1,"d":0},{"t":"l’assurance","max":190,"d":0.75},{"t":"paie 2 fois","f":1,"d":1.3}]},
+{"t":11.18,"type":"mots","inv":true,"lignes":[{"t":"Ça a l’air","d":0},{"t":"malin","f":1,"d":0.3}]},
+{"t":12.08,"type":"grille","sur":"Pour être rentable, il faudrait un blackjack","cases":["1","2","3"],"pleins":[0],"cols":3,"dp":2.95,"titre":"plus d’1 fois sur 3"},
+{"t":16.3,"type":"grille","sur":"En réalité","cases":["A","2","3","4","5","6","7","8","9","10","V","D","R"],"pleins":[9,10,11,12],"cols":5,"dp":0.9,"titre":"4 cartes sur 13","leg":"valent dix : moins d’une fois sur trois"},
+{"t":18.52,"type":"mots","lignes":[{"t":"Résultat","max":260,"d":0},{"t":"sur la durée","p":1,"d":0.72}]},
+{"t":19.95,"type":"chiffre","sur":"L’assurance te coûte environ","pre":"−","a":7,"suf":" %","leg":"de chaque mise que tu y mets"},
+{"t":23.2,"type":"mots","lignes":[{"t":"Même avec","p":1,"d":0},{"t":"un 20","f":1,"d":0.3}]},
+{"t":24.44,"type":"mots","lignes":[{"t":"Même avec","p":1,"d":0},{"t":"un blackjack","f":1,"d":0.4}]},
+{"t":26.12,"type":"mots","inv":true,"lignes":[{"t":"La règle est simple","p":1,"d":0},{"t":"Tu ne prends","p":1,"d":0.96},{"t":"jamais","d":1.4},{"t":"l’assurance","b":1,"d":1.9,"bd":0.55}]},
+{"t":29.04,"type":"fin","t2":1.55}
+]}
