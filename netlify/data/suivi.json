@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-21T13:19:00+01:00",
+ "maj": "2026-11-22T02:26:00+01:00",
  "voix": {
   "forfait": "creator",
-  "utilises": 11743,
+  "utilises": 18125,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -64,17 +64,19 @@
     {
      "quand": "2026-11-21T10:00",
      "sujet": "12 contre 2",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/Df_3cL1lIYX/"
     },
     {
      "quand": "2026-11-21T12:30",
      "sujet": "Paire de 9 contre 7",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgAINgpCfBb/"
     },
     {
      "quand": "2026-11-21T18:00",
      "sujet": "As-6 contre 5",
-     "statut": "programme"
+     "statut": "erreur"
     },
     {
      "quand": "2026-11-22T10:00",
@@ -104,6 +106,21 @@
     {
      "quand": "2026-11-23T18:00",
      "sujet": "As-6 contre 7",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T10:00",
+     "sujet": "12 contre 3",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T12:30",
+     "sujet": "Paire de 9 contre 9",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T18:00",
+     "sujet": "As-8 contre 6",
      "statut": "programme"
     }
    ]
@@ -140,12 +157,14 @@
     {
      "quand": "2026-11-21T16:00",
      "sujet": "Blackjack payé 6 contre 5",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgAg4wbAp5s/"
     },
     {
      "quand": "2026-11-21T20:30",
      "sujet": "Les quatre soldats qui ont calculé la stratégie de base",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgA_Ig6kvjQ/"
     },
     {
      "quand": "2026-11-22T11:15",
