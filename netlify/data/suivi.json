@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-22T02:26:00+01:00",
+ "maj": "2026-11-22T03:52:00+01:00",
  "voix": {
   "forfait": "creator",
-  "utilises": 18125,
+  "utilises": 22353,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -179,6 +179,21 @@
     {
      "quand": "2026-11-22T20:30",
      "sujet": "Cervantes et la veintiuna",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T11:15",
+     "sujet": "16 contre 10 : tirer",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T16:00",
+     "sujet": "Doubler 11",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-23T20:30",
+     "sujet": "Eleanor Dumont, Madame Moustache",
      "statut": "programme"
     }
    ]
