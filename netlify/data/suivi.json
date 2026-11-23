@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-22T03:52:00+01:00",
+ "maj": "2026-11-23T03:49:00+01:00",
  "voix": {
   "forfait": "creator",
-  "utilises": 22353,
+  "utilises": 40336,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -169,17 +169,20 @@
     {
      "quand": "2026-11-22T11:15",
      "sujet": "La carte du croupier",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgCkbCoin3Z/"
     },
     {
      "quand": "2026-11-22T16:00",
      "sujet": "Les paires : toujours ou jamais",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgDFtzEDhNM/"
     },
     {
      "quand": "2026-11-22T20:30",
      "sujet": "Cervantes et la veintiuna",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgDj7CwFAgS/"
     },
     {
      "quand": "2026-11-23T11:15",
@@ -194,6 +197,21 @@
     {
      "quand": "2026-11-23T20:30",
      "sujet": "Eleanor Dumont, Madame Moustache",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T11:15",
+     "sujet": "12 contre 2 ou 3 : tirer",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T16:00",
+     "sujet": "As-7, le 18 souple",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-24T20:30",
+     "sujet": "Nevada, 19 mars 1931 : les jeux redeviennent légaux",
      "statut": "programme"
     }
    ]
