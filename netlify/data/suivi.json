@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-23T03:49:00+01:00",
+ "maj": "2026-11-25T04:08:00+01:00",
  "voix": {
   "forfait": "creator",
-  "utilises": 40336,
+  "utilises": 72619,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -187,31 +187,67 @@
     {
      "quand": "2026-11-23T11:15",
      "sujet": "16 contre 10 : tirer",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgFJJvZAstw/"
     },
     {
      "quand": "2026-11-23T16:00",
      "sujet": "Doubler 11",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgFqXQtDQOr/"
     },
     {
      "quand": "2026-11-23T20:30",
      "sujet": "Eleanor Dumont, Madame Moustache",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgGIuyHjroj/"
     },
     {
      "quand": "2026-11-24T11:15",
      "sujet": "12 contre 2 ou 3 : tirer",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgHt8Qsk560/"
     },
     {
      "quand": "2026-11-24T16:00",
      "sujet": "As-7, le 18 souple",
-     "statut": "programme"
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgIPljCDGi8/"
     },
     {
      "quand": "2026-11-24T20:30",
      "sujet": "Nevada, 19 mars 1931 : les jeux redeviennent légaux",
+     "statut": "publie",
+     "lien": "https://www.instagram.com/reel/DgIti_ZDhqC/"
+    },
+    {
+     "quand": "2026-11-25T11:15",
+     "sujet": "Doubler 10 : du 2 au 9",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-25T16:00",
+     "sujet": "As-6, le 17 souple",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-25T20:30",
+     "sujet": "Le Temple de la renommée du blackjack (Barona, 2002)",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-26T11:15",
+     "sujet": "Paire de 9 : partager, sauf trois exceptions",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-26T16:00",
+     "sujet": "Doubler 9 : du 3 au 6",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-26T20:30",
+     "sujet": "Atlantic City, 26 mai 1978 : le premier casino légal",
      "statut": "programme"
     }
    ]
