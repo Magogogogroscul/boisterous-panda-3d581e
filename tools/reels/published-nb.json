@@ -82,5 +82,41 @@
   "date": "2026-11-24",
   "heure": "20:30",
   "type": "histoire"
+ },
+ {
+  "id": "doubler-dix-contre-deux-a-neuf",
+  "date": "2026-11-25",
+  "heure": "11:15",
+  "type": "strategie"
+ },
+ {
+  "id": "as-six-dix-sept-souple",
+  "date": "2026-11-25",
+  "heure": "16:00",
+  "type": "strategie"
+ },
+ {
+  "id": "temple-renommee-blackjack-barona",
+  "date": "2026-11-25",
+  "heure": "20:30",
+  "type": "histoire"
+ },
+ {
+  "id": "paire-de-neuf-partager",
+  "date": "2026-11-26",
+  "heure": "11:15",
+  "type": "strategie"
+ },
+ {
+  "id": "doubler-neuf-contre-trois-a-six",
+  "date": "2026-11-26",
+  "heure": "16:00",
+  "type": "strategie"
+ },
+ {
+  "id": "atlantic-city-1978-premier-casino-legal",
+  "date": "2026-11-26",
+  "heure": "20:30",
+  "type": "histoire"
  }
 ]
