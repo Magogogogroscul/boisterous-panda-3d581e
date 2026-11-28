@@ -1,8 +1,8 @@
 {
- "maj": "2026-11-27T03:55:00+01:00",
+ "maj": "2026-11-28T03:55:00+01:00",
  "voix": {
   "forfait": "creator",
-  "utilises": 93349,
+  "utilises": 104407,
   "limite": 146451,
   "reset": "2026-12-20",
   "usd_par_credit": 0.0002
@@ -254,17 +254,17 @@
     {
      "quand": "2026-11-27T11:15",
      "sujet": "Paire de 7 : partager jusqu’au 7",
-     "statut": "programme"
+     "statut": "erreur"
     },
     {
      "quand": "2026-11-27T16:00",
      "sujet": "As-2 et As-3 : doubler contre 5 et 6",
-     "statut": "programme"
+     "statut": "erreur"
     },
     {
      "quand": "2026-11-27T20:30",
      "sujet": "Monte-Carlo : les Monégasques interdits de salles de jeux",
-     "statut": "programme"
+     "statut": "erreur"
     },
     {
      "quand": "2026-11-28T11:15",
@@ -279,6 +279,21 @@
     {
      "quand": "2026-11-28T20:30",
      "sujet": "Venise, 1638 : le Ridotto, première maison de jeu d’État",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-29T11:15",
+     "sujet": "Paires de 2 et de 3 : partager jusqu’au 7",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-29T16:00",
+     "sujet": "13 à 16 contre une petite carte : rester",
+     "statut": "programme"
+    },
+    {
+     "quand": "2026-11-29T20:30",
+     "sujet": "Pourquoi aucun casino à Paris : la règle des 100 km",
      "statut": "programme"
     }
    ]
