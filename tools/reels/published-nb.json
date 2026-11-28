@@ -154,5 +154,23 @@
   "date": "2026-11-28",
   "heure": "20:30",
   "type": "histoire"
+ },
+ {
+  "id": "paire-de-deux-et-trois-partager-jusqu-au-sept",
+  "date": "2026-11-29",
+  "heure": "11:15",
+  "type": "strategie"
+ },
+ {
+  "id": "treize-a-seize-rester-contre-deux-a-six",
+  "date": "2026-11-29",
+  "heure": "16:00",
+  "type": "strategie"
+ },
+ {
+  "id": "pas-de-casino-a-paris-regle-des-cent-kilometres",
+  "date": "2026-11-29",
+  "heure": "20:30",
+  "type": "histoire"
  }
 ]
